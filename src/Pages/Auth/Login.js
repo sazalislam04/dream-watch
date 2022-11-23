@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import login from "../../assets/img/login.png";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Login = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const { userEmailLogin, loginWithGoogle } = useContext(AuthContext);
+
+  const handleLogin = (data) => {
+    userEmailLogin(data.email, data.password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      toast.success("Login Success");
+    });
+  };
+  const handleGoogleLogin = () => {
+    loginWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="py-10">
       <div className="hero-content flex-col lg:gap-20 container lg:flex-row">
@@ -11,7 +38,7 @@ const Login = () => {
         </div>
         <div className="card flex-shrink-0 w-full lg:w-96 shadow-2xl bg-base-100">
           <div className="card-body">
-            <form>
+            <form onSubmit={handleSubmit(handleLogin)}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -20,17 +47,31 @@ const Login = () => {
                   type="text"
                   placeholder="email"
                   className="input input-bordered"
+                  {...register("email", { required: "Eamil is required" })}
+                  aria-invalid={errors.email ? "true" : "false"}
                 />
+                {errors.email && (
+                  <p className="text-red-500 mt-1">{errors.email?.message}</p>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="password"
                   className="input input-bordered"
+                  {...register("password", {
+                    required: "Password is required",
+                  })}
+                  aria-invalid={errors.name ? "true" : "false"}
                 />
+                {errors.password && (
+                  <p className="text-red-500 mt-1">
+                    {errors.password?.message}
+                  </p>
+                )}
                 <label className="label">
                   <Link to="" className="label-text-alt link link-hover">
                     Forgot password?
@@ -43,7 +84,11 @@ const Login = () => {
             </form>
             <div className="divider">Login with social accounts</div>
             <div className="flex justify-center space-x-4">
-              <button aria-label="Log in with Google" className="rounded-sm">
+              <button
+                onClick={handleGoogleLogin}
+                aria-label="Log in with Google"
+                className="rounded-sm"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 32 32"

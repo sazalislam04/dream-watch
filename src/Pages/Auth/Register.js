@@ -13,7 +13,8 @@ const Register = () => {
   } = useForm();
 
   const imgHostKey = process.env.REACT_APP_imgbb;
-  const { createUser, userProfileUpdate } = useContext(AuthContext);
+  const { createUser, userProfileUpdate, loginWithGoogle } =
+    useContext(AuthContext);
 
   const handleRegister = (data) => {
     const image = data.image[0];
@@ -28,7 +29,6 @@ const Register = () => {
       .then((imageData) => {
         createUser(data.email, data.password)
           .then((result) => {
-            const user = result.user;
             const userInfo = {
               displayName: data.name,
               photoURL: imageData.data.display_url,
@@ -36,7 +36,6 @@ const Register = () => {
             };
             userProfileUpdate(userInfo)
               .then(() => {
-                toast.success("Account Created Success");
                 savedUser(
                   data.name,
                   data.email,
@@ -67,8 +66,19 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.acknowledged) {
+          toast.success("Account Created Success");
+        }
       });
+  };
+
+  const handleGoogleLogin = () => {
+    loginWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -162,7 +172,11 @@ const Register = () => {
             </form>
             <div className="divider">Login with social accounts</div>
             <div className="flex justify-center space-x-4">
-              <button aria-label="Log in with Google" className="rounded-sm">
+              <button
+                onClick={handleGoogleLogin}
+                aria-label="Log in with Google"
+                className="rounded-sm"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 32 32"
