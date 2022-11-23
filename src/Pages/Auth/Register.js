@@ -10,14 +10,21 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
+  const imgHostKey = process.env.REACT_APP_imgbb;
+
   const handleRegister = (data) => {
-    console.log(data);
-
-    const url =
-      "https://api.imgbb.com/1/upload?expiration=600&key=YOUR_CLIENT_API_KEY";
-
     const image = data.image[0];
-    console.log(image);
+    const formData = new FormData();
+    formData.append("image", image);
+
+    fetch(`https://api.imgbb.com/1/upload?key=${imgHostKey}`, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        console.log(imageData);
+      });
   };
 
   return (
@@ -79,7 +86,7 @@ const Register = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="password"
                   className="input input-bordered"
                   {...register("password", {
