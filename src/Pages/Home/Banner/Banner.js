@@ -27,7 +27,7 @@ const Banner = () => {
   ];
 
   return (
-    <div className="carousel w-full h-[600px] overflow-hidden">
+    <div className="carousel w-full lg:h-[600px] min-h-screen overflow-hidden">
       {sliderItem.map((item) => (
         <Slider key={item.id} item={item} />
       ))}
