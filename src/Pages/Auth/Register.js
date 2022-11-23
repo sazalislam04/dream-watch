@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import registerimg from "../../assets/img/register.png";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Register = () => {
   const {
@@ -11,7 +13,7 @@ const Register = () => {
   } = useForm();
 
   const imgHostKey = process.env.REACT_APP_imgbb;
-
+  const { createUser, userProfileUpdate } = useContext(AuthContext);
   const handleRegister = (data) => {
     const image = data.image[0];
     const formData = new FormData();
@@ -23,7 +25,22 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((imageData) => {
-        console.log(imageData);
+        createUser(data.email, data.password)
+          .then((result) => {
+            const user = result.user;
+            console.log(user);
+            const userInfo = {
+              displayName: data.name,
+              photoURL: imageData.data.display_url,
+              email: data.email,
+            };
+            userProfileUpdate(userInfo)
+              .then(() => {
+                toast.success("Account Created Success");
+              })
+              .then((error) => console.log(error));
+          })
+          .catch((error) => console.log(error));
       });
   };
 
@@ -113,7 +130,7 @@ const Register = () => {
                 </select>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">Register</button>
               </div>
             </form>
             <div className="divider">Login with social accounts</div>
