@@ -14,6 +14,7 @@ const Register = () => {
 
   const imgHostKey = process.env.REACT_APP_imgbb;
   const { createUser, userProfileUpdate } = useContext(AuthContext);
+
   const handleRegister = (data) => {
     const image = data.image[0];
     const formData = new FormData();
@@ -28,7 +29,6 @@ const Register = () => {
         createUser(data.email, data.password)
           .then((result) => {
             const user = result.user;
-            console.log(user);
             const userInfo = {
               displayName: data.name,
               photoURL: imageData.data.display_url,
@@ -37,10 +37,37 @@ const Register = () => {
             userProfileUpdate(userInfo)
               .then(() => {
                 toast.success("Account Created Success");
+                savedUser(
+                  data.name,
+                  data.email,
+                  imageData.data.display_url,
+                  data.account
+                );
               })
-              .then((error) => console.log(error));
+              .catch((error) => console.log(error));
           })
           .catch((error) => console.log(error));
+      });
+  };
+
+  const savedUser = (name, email, photo, account) => {
+    const user = {
+      name,
+      email,
+      photo,
+      account,
+    };
+
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
       });
   };
 
