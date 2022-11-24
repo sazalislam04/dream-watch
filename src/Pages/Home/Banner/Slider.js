@@ -27,7 +27,7 @@ const Slider = ({ item }) => {
           </button>
         </div>
       </div>
-      <div className="absolute flex justify-between transform -translate-y-1/2  right-8 lg:right-16 gap-6 bottom-2 lg:bottom-10">
+      <div className="absolute flex justify-between transform -translate-y-1/2  right-8 lg:right-16 gap-6 bottom-0 lg:bottom-10">
         <a href={`#slide${prev}`} className="btn text-blue-500 btn-circle">
           ❮
         </a>

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import registerimg from "../../assets/img/register.png";
 import { AuthContext } from "../../context/AuthProvider";
-import useToken from "../../hooks/useToken";
+import useToken from "../../hook/useToken";
 
 const Register = () => {
   const {
@@ -20,10 +20,6 @@ const Register = () => {
   const from = location.state?.from?.pathname || "/";
   const [createUserToken, setCreateUserToken] = useState("");
   const [token] = useToken(createUserToken);
-
-  if (token) {
-    navigate(from, { replace: true });
-  }
 
   const handleRegister = (data) => {
     const image = data.image[0];
@@ -49,8 +45,9 @@ const Register = () => {
                   data.name,
                   data.email,
                   imageData.data.display_url,
-                  data.account
+                  data.role
                 );
+                return navigate(from, { replace: true });
               })
               .catch((error) => console.log(error));
           })
@@ -59,28 +56,29 @@ const Register = () => {
   };
 
   const handleGoogleLogin = () => {
-    const BuyerAccount = {
-      account: "Buyers",
+    const buyerAccount = {
+      role: "Buyers",
     };
     loginWithGoogle()
       .then((result) => {
         const user = result.user;
+        setCreateUserToken(user?.email);
         savedUser(
-          user?.email,
-          user?.displayName,
-          user?.photoURL,
-          BuyerAccount.account
+          user.email,
+          user.displayName,
+          user.photoURL,
+          buyerAccount.role
         );
       })
       .catch((error) => console.log(error));
   };
 
-  const savedUser = (name, email, photo, account) => {
+  const savedUser = (name, email, photo, role) => {
     const user = {
       name,
       email,
       photo,
-      account,
+      role,
     };
     fetch("http://localhost:5000/users", {
       method: "POST",
@@ -91,8 +89,10 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setCreateUserToken(email);
+        if (data.success) {
+          setCreateUserToken(email);
+          return navigate(from, { replace: true });
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -176,7 +176,7 @@ const Register = () => {
                 </label>
                 <select
                   className="select select-bordered w-full"
-                  {...register("account")}
+                  {...register("role")}
                 >
                   <option defaultValue="Buyers Account">Buyers</option>
                   <option>Seller</option>

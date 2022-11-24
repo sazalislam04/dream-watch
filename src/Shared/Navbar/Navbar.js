@@ -18,8 +18,15 @@ const Navbar = () => {
     <>
       <li>
         <Link to="/">Home</Link>
+      </li>
+      <li>
         <Link>Blog</Link>
       </li>
+      {user?.email && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
     </>
   );
 
@@ -63,9 +70,31 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {user?.email ? (
-            <button onClick={handleLogOut} className="btn btn-primary">
-              Logout
-            </button>
+            <>
+              <button onClick={handleLogOut} className="btn btn-primary mr-3">
+                Logout
+              </button>
+
+              <label
+                htmlFor="my-drawer-2"
+                className="btn btn-primary drawer-button lg:hidden"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                  />
+                </svg>
+              </label>
+            </>
           ) : (
             <Link to="/login">
               <button className="btn btn-primary">Login</button>
