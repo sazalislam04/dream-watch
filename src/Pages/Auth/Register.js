@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import registerimg from "../../assets/img/register.png";
 import { AuthContext } from "../../context/AuthProvider";
+import useToken from "../../hooks/useToken";
 
 const Register = () => {
   const {
@@ -15,6 +15,15 @@ const Register = () => {
   const imgHostKey = process.env.REACT_APP_imgbb;
   const { createUser, userProfileUpdate, loginWithGoogle } =
     useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+  const [createUserToken, setCreateUserToken] = useState("");
+  const [token] = useToken(createUserToken);
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handleRegister = (data) => {
     const image = data.image[0];
@@ -49,6 +58,23 @@ const Register = () => {
       });
   };
 
+  const handleGoogleLogin = () => {
+    const BuyerAccount = {
+      account: "Buyers",
+    };
+    loginWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        savedUser(
+          user?.email,
+          user?.displayName,
+          user?.photoURL,
+          BuyerAccount.account
+        );
+      })
+      .catch((error) => console.log(error));
+  };
+
   const savedUser = (name, email, photo, account) => {
     const user = {
       name,
@@ -56,7 +82,6 @@ const Register = () => {
       photo,
       account,
     };
-
     fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
@@ -66,17 +91,8 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.acknowledged) {
-          toast.success("Account Created Success");
-        }
-      });
-  };
-
-  const handleGoogleLogin = () => {
-    loginWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
+        console.log(data);
+        setCreateUserToken(email);
       })
       .catch((error) => console.log(error));
   };
@@ -114,7 +130,7 @@ const Register = () => {
                   accept="image/*"
                   placeholder="photo"
                   className="file-input w-full file-input-bordered"
-                  {...register("image", { required: "Email is required" })}
+                  {...register("image", { required: "Photo is required" })}
                 />
                 {errors.image && (
                   <p className="text-red-500 mt-1">{errors.image?.message}</p>
@@ -162,8 +178,8 @@ const Register = () => {
                   className="select select-bordered w-full"
                   {...register("account")}
                 >
-                  <option defaultValue="Buyers Account">Buyers Account</option>
-                  <option>Seller Account</option>
+                  <option defaultValue="Buyers Account">Buyers</option>
+                  <option>Seller</option>
                 </select>
               </div>
               <div className="form-control mt-6">
