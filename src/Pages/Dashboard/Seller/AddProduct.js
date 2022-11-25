@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const AddProduct = () => {
   const {
@@ -9,7 +10,7 @@ const AddProduct = () => {
     handleSubmit,
   } = useForm();
   const imgHostKey = process.env.REACT_APP_imgbb;
-
+  const { user } = useContext(AuthContext);
   const handleAddProduct = (data) => {
     const image = data.image[0];
     const formData = new FormData();
@@ -33,6 +34,8 @@ const AddProduct = () => {
           years: data.years,
           description: data.description,
           timestamp: new Date(),
+          email: user.email,
+          userName: user.displayName,
         };
         console.log(product);
         storeProductData(product);
@@ -42,7 +45,7 @@ const AddProduct = () => {
   const storeProductData = (product) => {
     console.log(product);
 
-    fetch("http://localhost:5000/categories", {
+    fetch(`http://localhost:5000/category-products?email=${user?.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -113,6 +116,7 @@ const AddProduct = () => {
             </label>
             <input
               type="text"
+              defaultValue={user?.displayName}
               placeholder="Seller Name"
               className="input input-bordered"
               {...register("seller_name", {

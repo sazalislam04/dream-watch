@@ -64,8 +64,8 @@ const Register = () => {
         const user = result.user;
         setCreateUserToken(user?.email);
         savedUser(
-          user.email,
           user.displayName,
+          user.email,
           user.photoURL,
           buyerAccount.role
         );
@@ -79,6 +79,7 @@ const Register = () => {
       email,
       photo,
       role,
+      status: false,
     };
     fetch("http://localhost:5000/users", {
       method: "POST",

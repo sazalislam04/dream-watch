@@ -26,7 +26,7 @@ const Login = () => {
         const user = result.user;
         setLoginToken(user?.email);
         toast.success("Login Success");
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };
@@ -36,7 +36,7 @@ const Login = () => {
         const user = result.user;
         setLoginToken(user?.email);
         toast.success("Login Success");
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };

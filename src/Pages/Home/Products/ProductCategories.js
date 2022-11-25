@@ -8,7 +8,7 @@ const ProductCategories = () => {
     queryKey: ["categories"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:5000/categories");
+        const res = await fetch("http://localhost:5000/category");
         const data = await res.json();
         return data;
       } catch (error) {
@@ -30,7 +30,7 @@ const ProductCategories = () => {
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <Categories key={category._id} category={category} />
           ))}
         </div>
