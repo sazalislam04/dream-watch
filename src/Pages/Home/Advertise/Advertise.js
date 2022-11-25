@@ -2,7 +2,6 @@ import React from "react";
 
 const Advertise = ({ advertise }) => {
   const { img, name, resale_price } = advertise;
-
   return (
     <>
       <div className="w-full overflow-hidden rounded-lg shadow-lg bg-base-300 mt-14">

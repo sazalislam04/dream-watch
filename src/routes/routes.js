@@ -5,6 +5,8 @@ import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import AllBuyer from "../Pages/Dashboard/Admin/AllBuyer";
 import AllSeller from "../Pages/Dashboard/Admin/AllSeller";
+import AllUser from "../Pages/Dashboard/Admin/AllUser";
+import ReportedItem from "../Pages/Dashboard/Admin/ReportedItem";
 import MyOrder from "../Pages/Dashboard/Buyer/MyOrder";
 import MyWishlist from "../Pages/Dashboard/Buyer/MyWishlist";
 import Dashboard from "../Pages/Dashboard/Dashboard";
@@ -59,6 +61,14 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
+        path: "/dashboard/allusers",
+        element: (
+          <AdminRoute>
+            <AllUser />
+          </AdminRoute>
+        ),
+      },
+      {
         path: "/dashboard/allbuyer",
         element: (
           <AdminRoute>
@@ -71,6 +81,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllSeller />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/reported",
+        element: (
+          <AdminRoute>
+            <ReportedItem />
           </AdminRoute>
         ),
       },
