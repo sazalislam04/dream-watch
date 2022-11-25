@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const Categories = ({ category }) => {
   const { _id, category_name, img } = category;
   return (
-    <div className="w-full py-2 overflow-hidden rounded-lg shadow-lg bg-gray-800">
+    <div className="w-full overflow-hidden rounded-lg shadow-lg bg-base-300">
       <Link to={`/category/${_id}`}>
         <div className="py-1">
-          <h5 className="text-xl font-semibold text-center uppercase text-white">
+          <h5 className="text-2xl font-semibold text-center uppercase text-gray-800">
             {category_name}
           </h5>
         </div>

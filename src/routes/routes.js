@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/dashboard/buyer",
+        path: "/dashboard/allbuyer",
         element: (
           <AdminRoute>
             <AllBuyer />
@@ -67,7 +67,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/seller",
+        path: "/dashboard/allseller",
         element: (
           <AdminRoute>
             <AllSeller />

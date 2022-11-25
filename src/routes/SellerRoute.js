@@ -17,7 +17,7 @@ const SellerRoute = ({ children }) => {
     return children;
   }
 
-  return <Navigate to="/login" state={{ from: location }} replace />;
+  return <Navigate to="/dashboard" state={{ from: location }} replace />;
 };
 
 export default SellerRoute;

@@ -1,6 +1,8 @@
 import React from "react";
 import Advertisement from "./Advertise/Advertisement";
 import Banner from "./Banner/Banner";
+import NewLook from "./NewLook/NewLook";
+import NewsLetter from "./NewsLetter/NewsLetter";
 import ProductCategories from "./Products/ProductCategories";
 
 const Home = () => {
@@ -9,6 +11,8 @@ const Home = () => {
       <Banner />
       <Advertisement />
       <ProductCategories />
+      <NewLook />
+      <NewsLetter />
     </div>
   );
 };

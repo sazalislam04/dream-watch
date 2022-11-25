@@ -21,7 +21,7 @@ const ProductCategories = () => {
   }
 
   return (
-    <div className="pt-20">
+    <div className="my-24">
       <div className="container">
         <div className="text-center">
           <h5 className="text-primary">Dream Watches</h5>
@@ -29,7 +29,7 @@ const ProductCategories = () => {
             product categories
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
           {categories?.map((category) => (
             <Categories key={category._id} category={category} />
           ))}
