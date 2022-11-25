@@ -1,25 +1,25 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import toast from "react-hot-toast";
 const ReportedItem = () => {
-  const [repored, setRepored] = useState([]);
-  const [refresh, setRefresh] = useState(false);
-
-  useEffect(() => {
-    axios.get("http://localhost:5000/reports").then((res) => {
-      setRepored(res.data);
-    });
-  }, [refresh]);
+  const { data: repored, refetch } = useQuery({
+    queryKey: ["repored"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/reports");
+      const data = await res.json();
+      return data;
+    },
+  });
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/reports${id}`, {
+    fetch(`http://localhost:5000/reports/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          toast.success("Seller Deleted Successfully");
-          setRefresh(true);
+          toast.success("Reported Item Deleted");
+          refetch();
         }
       });
   };
