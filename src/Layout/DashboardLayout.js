@@ -23,9 +23,9 @@ const DashboardLayout = () => {
             Open drawer
           </label>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side shadow">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+          <ul className="menu p-10 w-72 bg-base-100 text-base-content">
             {isAdmin && (
               <>
                 <li>
