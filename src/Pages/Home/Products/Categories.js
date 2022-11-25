@@ -7,7 +7,7 @@ const Categories = ({ category }) => {
     <div className="w-full py-2 overflow-hidden rounded-lg shadow-lg bg-gray-800">
       <Link to={`/category/${_id}`}>
         <div className="py-1">
-          <h5 className="text-xl font-semibold text-center text-gray-800 uppercase dark:text-white">
+          <h5 className="text-xl font-semibold text-center uppercase text-white">
             {category_name}
           </h5>
         </div>

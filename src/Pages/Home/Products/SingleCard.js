@@ -60,9 +60,11 @@ const SingleCard = ({ product, setBookingData }) => {
   return (
     <div className="mb-12 lg:mb-20">
       <div className="container">
-        <div className="flex flex-col gap-20 lg:flex-row">
-          <img src={img} className="w-full lg:max-w-sm" alt="" />
-          <div className="w-full">
+        <div className="flex flex-col lg:flex-row">
+          <div className="w-full lg:w-1/2">
+            <img src={img} className="w-full lg:max-w-sm" alt="" />
+          </div>
+          <div className="w-full lg:w-8/12 mt-10 md:mt-0">
             <h1 className="text-3xl font-medium">{name}</h1>
             <p className="text-xl mt-3">
               Resale Price:{" "}
@@ -98,14 +100,14 @@ const SingleCard = ({ product, setBookingData }) => {
             <button
               onClick={() => reportToAdmin(product)}
               title="Report to Admin"
-              className="ml-3 border p-2 rounded text-secondary border-secondary"
+              className="ml-3 btn btn-outline btn-sm btn-secondary"
             >
               Report to Admin
             </button>
             <button
               onClick={() => handleWishlist(product)}
               title="Wishlist"
-              className="ml-3 border p-2 rounded text-success border-success"
+              className="ml-3 mt-5 btn btn-outline btn-success btn-sm"
             >
               WishList
             </button>

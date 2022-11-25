@@ -39,7 +39,21 @@ const MyProducts = () => {
       });
   };
 
-  const handleAdvertise = (category) => {};
+  const handleAdvertise = (id) => {
+    fetch(`http://localhost:5000/advertise/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ isAdvertise: true }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.matchedCount) {
+          toast.success("Product Advertise Success");
+        }
+      });
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -92,7 +106,7 @@ const MyProducts = () => {
                           </Link>
                           <Link>
                             <button
-                              onClick={() => handleAdvertise(category)}
+                              onClick={() => handleAdvertise(category._id)}
                               className="btn btn-secondary ml-3 btn-sm"
                             >
                               Advertise
