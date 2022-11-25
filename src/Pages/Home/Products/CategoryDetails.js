@@ -20,7 +20,7 @@ const CategoryDetails = () => {
 
   return (
     <>
-      <div className="bg-base-200 py-6 mb-14">
+      <div className="bg-base-200 py-6 mb-20">
         <div className="sm:flex items-center justify-between container">
           <div>
             <h2 className="text-4xl font-medium">{category_name}</h2>
@@ -38,15 +38,42 @@ const CategoryDetails = () => {
           <img className="h-52 md:h-72 mt-5 lg:mt-0" src={banner} alt="" />
         </div>
       </div>
-      <div className="card lg:card-side bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/400/arch" alt="Album" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">New album is released!</h2>
-          <p>Click the button to listen on Spotiwhy app.</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Listen</button>
+      <div className="lg:mb-10">
+        <div className="container">
+          <div className="flex flex-col gap-20 lg:flex-row">
+            <img
+              src={img}
+              className="w-full lg:max-w-md rounded-lg shadow"
+              alt=""
+            />
+            <div className="w-full">
+              <h1 className="text-5xl font-medium">{name}</h1>
+              <p className="text-xl mt-3">
+                Resale Price:{" "}
+                <span className="font-semibold">{resale_price}$</span>
+              </p>
+              <p className="text-lg mt-1">
+                Original Price:{" "}
+                <span className="font-medium">{original_price}$</span>
+              </p>
+              <p className="text-lg mt-1">
+                Location: <span className="font-medium">{location}</span>
+              </p>
+              <p className="text-lg mt-1">
+                Years of use: <span className="font-medium">{years}</span>
+              </p>
+              <p className="text-lg mt-1">
+                Seller Name: <span className="font-medium">{seller_name}</span>
+              </p>
+              <p className="text-lg mt-1">
+                Seller Number: <span className="font-medium">{number}</span>
+              </p>
+              <p className="text-lg mt-1">
+                Posted Date: <span className="font-medium">{timestamp}</span>
+              </p>
+              <p className="py-6">{description}</p>
+              <button className="btn btn-primary">Get Started</button>
+            </div>
           </div>
         </div>
       </div>
