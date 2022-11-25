@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const AddProduct = () => {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -36,6 +38,7 @@ const AddProduct = () => {
           timestamp: new Date(),
           email: user.email,
           userName: user.displayName,
+          isAdvertise: false,
         };
         console.log(product);
         storeProductData(product);
@@ -56,6 +59,7 @@ const AddProduct = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Product Added Success");
+          navigate("/dashboard/myproducts");
         }
       });
   };

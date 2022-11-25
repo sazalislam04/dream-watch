@@ -43,7 +43,6 @@ const MyOrder = () => {
 
   return (
     <div className="p-8">
-      <h2 className="text-2xl mb-5">My orders</h2>
       <div className="overflow-x-auto">
         {bookings.length ? (
           <>

@@ -6,6 +6,7 @@ import Register from "../Pages/Auth/Register";
 import AllBuyer from "../Pages/Dashboard/Admin/AllBuyer";
 import AllSeller from "../Pages/Dashboard/Admin/AllSeller";
 import MyOrder from "../Pages/Dashboard/Buyer/MyOrder";
+import MyWishlist from "../Pages/Dashboard/Buyer/MyWishlist";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddProduct from "../Pages/Dashboard/Seller/AddProduct";
 import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
@@ -94,6 +95,14 @@ export const router = createBrowserRouter([
         element: (
           <BuyerRoute>
             <MyOrder />
+          </BuyerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/mywishlist",
+        element: (
+          <BuyerRoute>
+            <MyWishlist />
           </BuyerRoute>
         ),
       },

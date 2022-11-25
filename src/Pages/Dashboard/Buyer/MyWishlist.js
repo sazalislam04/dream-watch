@@ -5,29 +5,25 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 import Loading from "../../../Loading/Loading";
 
-const MyProducts = () => {
+const MyWishlist = () => {
   const { user } = useContext(AuthContext);
   const {
-    data: products,
-    isLoading,
+    data: wishlists,
     refetch,
+    isLoading,
   } = useQuery({
-    queryKey: ["products", user?.email],
+    queryKey: ["wishlists", user?.email],
     queryFn: async () => {
-      try {
-        const res = await fetch(
-          `http://localhost:5000/products?email=${user?.email}`
-        );
-        const data = await res.json();
-        return data;
-      } catch (error) {
-        console.log(error);
-      }
+      const res = await fetch(
+        `http://localhost:5000/wishlist?email=${user?.email}`
+      );
+      const data = await res.json();
+      return data;
     },
   });
 
-  const handleDeleteProduct = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
+  const handleDeleteWishList = (id) => {
+    fetch(`http://localhost:5000/wishlist/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -39,69 +35,59 @@ const MyProducts = () => {
       });
   };
 
-  const handleAdvertise = (category) => {};
-
   if (isLoading) {
     return <Loading />;
   }
 
   return (
-    <div className="p-8">
+    <div>
+      {" "}
       <div className="overflow-x-auto">
-        {products.length ? (
+        {wishlists.length ? (
           <>
             <table className="table w-full">
               <thead>
                 <tr>
                   <th></th>
                   <th>Avatar</th>
-                  <th>Name</th>
+                  <th>Product Name</th>
                   <th>Price</th>
                   <th>Action</th>
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                {products?.map((category, index) => (
-                  <tr key={category._id}>
+                {wishlists?.map((wishlist, index) => (
+                  <tr key={wishlist._id}>
                     <th>{index + 1}</th>
                     <td>
                       <img
                         className="w-12 h-12 rounded-full"
-                        src={category.img}
+                        src={wishlist.product.img}
                         alt=""
                       />
                     </td>
-                    <td>{category.name}</td>
-                    <td>{category.resale_price}$</td>
+                    <td>{wishlist.product.name}</td>
+                    <td>{wishlist.product.resale_price}$</td>
                     <td>
                       <button
-                        onClick={() => handleDeleteProduct(category._id)}
+                        onClick={() => handleDeleteWishList(wishlist._id)}
                         className="btn btn-error btn-sm"
                       >
                         Delete
                       </button>
                     </td>
                     <td>
-                      {category?.resale_price && !category.paid && (
-                        <>
-                          <Link to="">
+                      {wishlist?.product.resale_price &&
+                        !wishlist.product.paid && (
+                          <Link to={`/dashboard/payment/${wishlist._id}`}>
                             <button className="btn btn-primary btn-sm">
-                              Available
+                              pay
                             </button>
                           </Link>
-                          <Link>
-                            <button
-                              onClick={() => handleAdvertise(category)}
-                              className="btn btn-secondary ml-3 btn-sm"
-                            >
-                              Advertise
-                            </button>
-                          </Link>
-                        </>
-                      )}
-                      {category.resale_price && category.paid && (
-                        <span className="text-green-500">Sold</span>
+                        )}
+                      {wishlist.product.price && wishlist.product.paid && (
+                        <span className="text-green-500">Paid</span>
                       )}
                     </td>
                   </tr>
@@ -110,11 +96,11 @@ const MyProducts = () => {
             </table>
           </>
         ) : (
-          <p className="text-center text-2xl">No Products Added</p>
+          <p className="text-center mt-20 text-2xl">No WishList Added</p>
         )}
       </div>
     </div>
   );
 };
 
-export default MyProducts;
+export default MyWishlist;

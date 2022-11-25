@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const SingleCard = ({ product, setBookingData }) => {
+  const { user } = useContext(AuthContext);
   const {
     img,
     location,
@@ -13,6 +16,46 @@ const SingleCard = ({ product, setBookingData }) => {
     description,
     timestamp,
   } = product;
+
+  const reportToAdmin = (product) => {
+    fetch("http://localhost:5000/reports", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Reported success");
+        } else {
+          toast.error(data.message);
+        }
+      });
+  };
+
+  const handleWishlist = (product) => {
+    const wishlist = {
+      product,
+      userEmail: user.email,
+    };
+    fetch(`http://localhost:5000/wishlist`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(wishlist),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Added Wishlist");
+        } else {
+          toast.error(data.message);
+        }
+      });
+  };
 
   return (
     <div className="mb-12 lg:mb-20">
@@ -52,6 +95,20 @@ const SingleCard = ({ product, setBookingData }) => {
             >
               Book Now
             </label>
+            <button
+              onClick={() => reportToAdmin(product)}
+              title="Report to Admin"
+              className="ml-3 border p-2 rounded text-secondary border-secondary"
+            >
+              Report to Admin
+            </button>
+            <button
+              onClick={() => handleWishlist(product)}
+              title="Wishlist"
+              className="ml-3 border p-2 rounded text-success border-success"
+            >
+              WishList
+            </button>
           </div>
         </div>
       </div>
