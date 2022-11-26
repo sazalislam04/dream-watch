@@ -42,7 +42,7 @@ const ReportedItem = () => {
               <th>{index + 1}</th>
               <th>
                 <img
-                  className="w-12 h-12 rounded-full"
+                  className="w-14 h-14 rounded-full"
                   src={report.img}
                   alt=""
                 />

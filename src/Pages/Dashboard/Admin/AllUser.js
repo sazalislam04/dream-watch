@@ -49,14 +49,16 @@ const AllUser = () => {
 
   return (
     <div>
-      <h1 className="text-3xl">All Users</h1>
+      <h1 className="text-3xl p-5">All Users</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
             <tr>
               <th></th>
+              <th>Avatar</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Account</th>
               <th>Admin</th>
               <th>Delete</th>
             </tr>
@@ -65,8 +67,16 @@ const AllUser = () => {
             {users.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
+                <th>
+                  <img
+                    className="w-14 h-14 object-cover rounded-full"
+                    src={user.photo}
+                    alt=""
+                  />
+                </th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>{user.role}</td>
                 <td>
                   {user?.role !== "admin" ? (
                     <>

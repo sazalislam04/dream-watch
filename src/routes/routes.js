@@ -12,6 +12,7 @@ import MyWishlist from "../Pages/Dashboard/Buyer/MyWishlist";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddProduct from "../Pages/Dashboard/Seller/AddProduct";
 import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import CategoryDetails from "../Pages/Home/Products/CategoryDetails";
 import AdminRoute from "./AdminRoute";
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -55,6 +57,7 @@ export const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/dashboard",
