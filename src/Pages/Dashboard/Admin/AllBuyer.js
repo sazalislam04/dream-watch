@@ -88,16 +88,14 @@ const AllBuyer = () => {
                 </button>
               </td>
               <td>
-                {user?.role !== "admin" && (
-                  <>
-                    <button
-                      onClick={() => handleVerify(user._id)}
-                      className="btn btn-xs btn-primary"
-                    >
-                      {user?.status ? "verified" : "Unverified"}
-                    </button>
-                  </>
-                )}
+                <>
+                  <button
+                    onClick={() => handleVerify(user._id)}
+                    className="btn btn-xs btn-primary"
+                  >
+                    {user?.status ? "verified" : "Unverified"}
+                  </button>
+                </>
               </td>
             </tr>
           ))}
