@@ -59,30 +59,27 @@ const Register = () => {
     const buyerAccount = {
       role: "Buyers",
     };
-    loginWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        setCreateUserToken(user?.email);
-        savedUser(
-          user.displayName,
-          user.email,
-          user.photoURL,
-          buyerAccount.role
-        );
-      })
-      .catch((error) => console.log(error));
+    loginWithGoogle().then((result) => {
+      const user = result.user;
+      savedUser(user.email, user.displayName, user.photoURL, buyerAccount.role);
+      setCreateUserToken(user?.email);
+    });
   };
 
-  const savedUser = (name, email, photo, role) => {
+  if (token) {
+    navigate(from, { replace: true });
+  }
+
+  const savedUser = (email, name, photo, role) => {
     const user = {
-      name,
       email,
+      name,
       photo,
       role,
       status: false,
     };
-    fetch("http://localhost:5000/users", {
-      method: "POST",
+    fetch(`http://localhost:5000/users/${email}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -92,7 +89,7 @@ const Register = () => {
       .then((data) => {
         if (data.success) {
           setCreateUserToken(email);
-          return navigate(from, { replace: true });
+          navigate(from, { replace: true });
         }
       })
       .catch((error) => console.log(error));

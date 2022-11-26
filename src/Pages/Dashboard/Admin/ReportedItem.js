@@ -1,8 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
+import { data } from "autoprefixer";
+import axios from "axios";
 import React from "react";
 import toast from "react-hot-toast";
+import Loading from "../../../Loading/Loading";
 const ReportedItem = () => {
-  const { data: repored, refetch } = useQuery({
+  const {
+    data: repored,
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["repored"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/reports");
@@ -12,17 +19,18 @@ const ReportedItem = () => {
   });
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/reports/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    axios.delete(`http://localhost:5000/reports/${id}`).then((res) => {
+      if (res.data) {
         if (data.acknowledged) {
-          toast.success("Reported Item Deleted");
+          toast.success("Reporded Deleted Successed");
           refetch();
         }
-      });
+      }
+    });
   };
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="overflow-x-auto">

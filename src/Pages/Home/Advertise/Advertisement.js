@@ -21,7 +21,7 @@ const Advertisement = () => {
       {sellerAdvertise?.length && (
         <>
           <div className="container">
-            <div className="text-center mt-20">
+            <div className="text-center mt-16">
               <h5 className="text-primary">Dream Watches</h5>
               <h2 className="text-gray-900 text-3xl capitalize font-medium">
                 Product Advertisement

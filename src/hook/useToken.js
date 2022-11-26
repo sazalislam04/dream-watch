@@ -9,7 +9,7 @@ const useToken = (email) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.accessToken) {
-            localStorage.setItem("accessToken", data.accessToken);
+            localStorage.setItem("watch-token", data.accessToken);
             setToken(data.accessToken);
           }
         });
