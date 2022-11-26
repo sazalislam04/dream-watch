@@ -50,7 +50,7 @@ const MyProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.matchedCount) {
-          toast.success("Product Advertise Success");
+          toast.success("Product Advertise Successed");
         }
       });
   };

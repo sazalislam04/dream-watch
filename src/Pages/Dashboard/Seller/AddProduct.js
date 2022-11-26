@@ -35,7 +35,7 @@ const AddProduct = () => {
           seller_name: data.seller_name,
           years: data.years,
           description: data.description,
-          timestamp: new Date(),
+          timestamp: new Date().toLocaleString(),
           email: user.email,
           userName: user.displayName,
           isAdvertise: false,

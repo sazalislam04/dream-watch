@@ -29,8 +29,8 @@ const AllBuyer = () => {
       });
   };
 
-  const handleVerify = (id) => {
-    fetch(`http://localhost:5000/verify-status/${id}`, {
+  const handleVerify = (email) => {
+    fetch(`http://localhost:5000/verify-status/${email}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -90,7 +90,7 @@ const AllBuyer = () => {
               <td>
                 <>
                   <button
-                    onClick={() => handleVerify(user._id)}
+                    onClick={() => handleVerify(user.email)}
                     className="btn btn-xs btn-primary"
                   >
                     {user?.status ? "verified" : "Unverified"}
