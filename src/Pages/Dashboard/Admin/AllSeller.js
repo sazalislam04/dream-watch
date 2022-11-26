@@ -30,15 +30,18 @@ const AllSeller = () => {
       });
   };
 
-  const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: "PUT",
+  const handleVerify = (id) => {
+    fetch(`http://localhost:5000/verify-status/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: true }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data.modifiedCount) {
-          toast.success("Make admin successfull");
+        if (data.matchedCount) {
+          toast.success("Account Verify Successed");
           refetch();
         }
       });
@@ -49,7 +52,7 @@ const AllSeller = () => {
   }
 
   return (
-    <div className="overflow-x-auto py-10">
+    <div className="overflow-x-auto">
       <table className="table w-full">
         <thead>
           <tr>
@@ -58,8 +61,8 @@ const AllSeller = () => {
             <th>Name</th>
             <th>Email</th>
             <th>Account</th>
-            <th>Make Admin</th>
             <th>Delete</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -77,24 +80,24 @@ const AllSeller = () => {
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
-                {user?.role !== "admin" && (
-                  <>
-                    <button
-                      onClick={() => handleMakeAdmin(user._id)}
-                      className="btn btn-xs btn-primary"
-                    >
-                      Make Admin
-                    </button>
-                  </>
-                )}
-              </td>
-              <td>
                 <button
                   onClick={() => handleDelete(user._id)}
                   className="btn btn-xs btn-warning"
                 >
                   Delete
                 </button>
+              </td>
+              <td>
+                {user?.role !== "admin" && (
+                  <>
+                    <button
+                      onClick={() => handleVerify(user._id)}
+                      className="btn btn-xs btn-primary"
+                    >
+                      {user?.status ? "Verified" : "Unverified"}
+                    </button>
+                  </>
+                )}
               </td>
             </tr>
           ))}

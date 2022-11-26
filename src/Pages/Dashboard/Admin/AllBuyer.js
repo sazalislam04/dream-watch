@@ -29,12 +29,29 @@ const AllBuyer = () => {
       });
   };
 
+  const handleVerify = (id) => {
+    fetch(`http://localhost:5000/verify-status/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: true }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.matchedCount) {
+          toast.success("Account Verify Successed");
+          refetch();
+        }
+      });
+  };
+
   if (isLoading) {
     return <Loading />;
   }
 
   return (
-    <div className="overflow-x-auto py-8">
+    <div className="overflow-x-auto">
       <table className="table w-full">
         <thead>
           <tr>
@@ -43,8 +60,8 @@ const AllBuyer = () => {
             <th>Name</th>
             <th>Email</th>
             <th>Account</th>
-            <th>Make Admin</th>
             <th>Delete</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -61,15 +78,7 @@ const AllBuyer = () => {
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.role}</td>
-              <td>
-                {user?.role !== "admin" && (
-                  <>
-                    <button className="btn btn-xs btn-primary">
-                      Make Admin
-                    </button>
-                  </>
-                )}
-              </td>
+
               <td>
                 <button
                   onClick={() => handleDelete(user._id)}
@@ -77,6 +86,18 @@ const AllBuyer = () => {
                 >
                   Delete
                 </button>
+              </td>
+              <td>
+                {user?.role !== "admin" && (
+                  <>
+                    <button
+                      onClick={() => handleVerify(user._id)}
+                      className="btn btn-xs btn-primary"
+                    >
+                      {user?.status ? "verified" : "Unverified"}
+                    </button>
+                  </>
+                )}
               </td>
             </tr>
           ))}
