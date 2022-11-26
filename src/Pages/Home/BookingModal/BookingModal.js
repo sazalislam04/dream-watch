@@ -67,12 +67,10 @@ const BookingModal = ({ bookingData, setBookingData }) => {
               value={user?.displayName}
               name="name"
               placeholder="Your Name"
-              defaultValue={user?.displayName}
               className="input input-bordered w-full"
             />
             <input
               type="text"
-              defaultValue={user?.email}
               disabled
               value={user?.email}
               name="userEmail"
@@ -84,7 +82,6 @@ const BookingModal = ({ bookingData, setBookingData }) => {
               value={bookingData.name}
               name="productName"
               disabled
-              defaultValue={bookingData.name}
               placeholder="Product Name"
               className="input input-bordered w-full"
             />
@@ -93,7 +90,6 @@ const BookingModal = ({ bookingData, setBookingData }) => {
               name="price"
               disabled
               value={bookingData.resale_price}
-              defaultValue={bookingData.resale_price}
               placeholder="Product price"
               className="input input-bordered w-full"
             />

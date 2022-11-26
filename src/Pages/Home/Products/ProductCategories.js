@@ -21,7 +21,7 @@ const ProductCategories = () => {
   }
 
   return (
-    <div className="my-24">
+    <div className="my-20">
       <div className="container">
         <div className="text-center">
           <h5 className="text-primary">Dream Watches</h5>
