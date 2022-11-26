@@ -4,6 +4,7 @@ import { AuthContext } from "../../../context/AuthProvider";
 
 const SingleCard = ({ product, setBookingData }) => {
   const { user } = useContext(AuthContext);
+
   const {
     img,
     location,
@@ -15,6 +16,7 @@ const SingleCard = ({ product, setBookingData }) => {
     years,
     description,
     timestamp,
+    status,
   } = product;
 
   const reportToAdmin = (product) => {
@@ -80,8 +82,26 @@ const SingleCard = ({ product, setBookingData }) => {
             <p className="text-lg mt-1">
               Years of use: <span className="font-medium">{years}</span>
             </p>
-            <p className="text-lg mt-1">
-              Seller Name: <span className="font-medium">{seller_name}</span>
+            <p className="text-lg mt-1 flex gap-1 items-center">
+              Seller Name: <span className="font-medium ">{seller_name}</span>
+              {status ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-green-500"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              ) : (
+                ""
+              )}{" "}
             </p>
             <p className="text-lg mt-1">
               Seller Number: <span className="font-medium">{number}</span>

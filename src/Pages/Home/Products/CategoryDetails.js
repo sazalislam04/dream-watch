@@ -5,7 +5,6 @@ import SingleCard from "./SingleCard";
 const CategoryDetails = () => {
   const { category, result } = useLoaderData();
   const [bookingData, setBookingData] = useState(null);
-
   return (
     <>
       <div className="bg-base-200 py-6 mb-20">

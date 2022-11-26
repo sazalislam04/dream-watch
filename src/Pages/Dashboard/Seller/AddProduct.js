@@ -40,14 +40,11 @@ const AddProduct = () => {
           userName: user.displayName,
           isAdvertise: false,
         };
-        console.log(product);
         storeProductData(product);
       });
   };
 
   const storeProductData = (product) => {
-    console.log(product);
-
     fetch(`http://localhost:5000/category-products?email=${user?.email}`, {
       method: "POST",
       headers: {
