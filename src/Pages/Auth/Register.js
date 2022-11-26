@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { setAuthToken } from "../../api/auth";
 import registerimg from "../../assets/img/register.png";
 import { AuthContext } from "../../context/AuthProvider";
-import useToken from "../../hook/useToken";
+import SmallLoading from "../../Loading/SmallLoading";
 
 const Register = () => {
   const {
@@ -13,13 +14,16 @@ const Register = () => {
   } = useForm();
 
   const imgHostKey = process.env.REACT_APP_imgbb;
-  const { createUser, userProfileUpdate, loginWithGoogle } =
-    useContext(AuthContext);
+  const {
+    loading,
+    setLoading,
+    createUser,
+    userProfileUpdate,
+    loginWithGoogle,
+  } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-  const [createUserToken, setCreateUserToken] = useState("");
-  const [token] = useToken(createUserToken);
 
   const handleRegister = (data) => {
     const image = data.image[0];
@@ -36,20 +40,25 @@ const Register = () => {
           .then((result) => {
             const userInfo = {
               displayName: data.name,
-              photoURL: imageData.data.display_url,
               email: data.email,
+              photoURL: imageData.data.display_url,
             };
             userProfileUpdate(userInfo)
               .then(() => {
-                savedUser(
-                  data.name,
-                  data.email,
-                  imageData.data.display_url,
-                  data.role
-                );
-                return navigate(from, { replace: true });
+                const user = {
+                  email: data.email,
+                  name: data.name,
+                  photo: imageData.data.display_url,
+                  role: data.role,
+                  status: false,
+                };
+                setAuthToken(user);
+                navigate(from, { replace: true });
               })
-              .catch((error) => console.log(error));
+              .catch((error) => {
+                console.log(error);
+                setLoading(false);
+              });
           })
           .catch((error) => console.log(error));
       });
@@ -60,39 +69,16 @@ const Register = () => {
       role: "Buyers",
     };
     loginWithGoogle().then((result) => {
-      const user = result.user;
-      savedUser(user.email, user.displayName, user.photoURL, buyerAccount.role);
-      setCreateUserToken(user?.email);
+      const user = {
+        email: result.user.email,
+        name: result.user.displayName,
+        photo: result.user.photoURL,
+        role: buyerAccount.role,
+        status: false,
+      };
+      setAuthToken(user);
+      navigate(from, { replace: true });
     });
-  };
-
-  if (token) {
-    navigate(from, { replace: true });
-  }
-
-  const savedUser = (email, name, photo, role) => {
-    const user = {
-      email,
-      name,
-      photo,
-      role,
-      status: false,
-    };
-    fetch(`http://localhost:5000/users/${email}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setCreateUserToken(email);
-          navigate(from, { replace: true });
-        }
-      })
-      .catch((error) => console.log(error));
   };
 
   return (
@@ -181,7 +167,9 @@ const Register = () => {
                 </select>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
+                <button className="btn btn-primary">
+                  {loading ? <SmallLoading /> : "Register"}{" "}
+                </button>
               </div>
             </form>
             <div className="divider">Login with social accounts</div>

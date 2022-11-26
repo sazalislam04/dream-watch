@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { setAuthToken } from "../../api/auth";
 import login from "../../assets/img/login.png";
 import { AuthContext } from "../../context/AuthProvider";
-import useToken from "../../hook/useToken";
+import SmallLoading from "../../Loading/SmallLoading";
 
 const Login = () => {
   const {
@@ -12,29 +13,29 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { userEmailLogin, loginWithGoogle } = useContext(AuthContext);
-  const [loginToken, setLoginToken] = useState("");
+  const { userEmailLogin, loading, loginWithGoogle, setLoading } =
+    useContext(AuthContext);
   const navigate = useNavigate();
-  const [token] = useToken(loginToken);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (data) => {
     userEmailLogin(data.email, data.password)
       .then((result) => {
-        const user = result.user;
-        setLoginToken(user?.email);
         toast.success("Login Success");
+        setAuthToken(result.user);
         navigate(from, { replace: true });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   };
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((result) => {
-        const user = result.user;
-        setLoginToken(user?.email);
         toast.success("Login Success");
+        setAuthToken(result.user);
         navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
@@ -89,7 +90,9 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">
+                  {loading ? <SmallLoading /> : "Login"}
+                </button>
               </div>
             </form>
             <div className="divider">Login with social accounts</div>

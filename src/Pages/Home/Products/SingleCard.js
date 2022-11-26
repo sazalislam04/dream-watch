@@ -112,33 +112,27 @@ const SingleCard = ({ product, setBookingData }) => {
               Posted Date: <span className="font-medium">{timestamp}</span>
             </p>
             <p className="py-6">{description}</p>
-            {isBuyer ? (
-              <>
-                <label
-                  onClick={() => setBookingData(product)}
-                  htmlFor="booking-modal"
-                  className="btn btn-primary"
-                >
-                  Book Now
-                </label>
-                <button
-                  onClick={() => reportToAdmin(product)}
-                  title="Report to Admin"
-                  className="ml-3 btn btn-outline btn-sm btn-secondary"
-                >
-                  Report to Admin
-                </button>
-                <button
-                  onClick={() => handleWishlist(product)}
-                  title="Wishlist"
-                  className="ml-3 mt-5 btn btn-outline btn-success btn-sm"
-                >
-                  WishList
-                </button>
-              </>
-            ) : (
-              <span className="text-primary">Available For Buyers</span>
-            )}
+            <label
+              onClick={() => setBookingData(product)}
+              htmlFor="booking-modal"
+              className="btn btn-primary"
+            >
+              Book Now
+            </label>
+            <button
+              onClick={() => reportToAdmin(product)}
+              title="Report to Admin"
+              className="ml-3 btn btn-outline btn-sm btn-secondary"
+            >
+              Report to Admin
+            </button>
+            <button
+              onClick={() => handleWishlist(product)}
+              title="Wishlist"
+              className="ml-3 mt-5 btn btn-outline btn-success btn-sm"
+            >
+              WishList
+            </button>
           </div>
         </div>
       </div>

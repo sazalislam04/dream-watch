@@ -7,7 +7,7 @@ import Loading from "../../../Loading/Loading";
 
 const MyOrder = () => {
   const { user } = useContext(AuthContext);
-
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
   const {
     data: bookings,
     isLoading,
@@ -15,9 +15,11 @@ const MyOrder = () => {
   } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:5000/bookings?email=${user?.email}`
-      );
+      const res = await fetch(url, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
