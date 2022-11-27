@@ -27,6 +27,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true);
+    localStorage.removeItem("watch-token");
     return signOut(auth);
   };
 

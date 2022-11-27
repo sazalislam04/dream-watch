@@ -11,7 +11,11 @@ const AllSeller = () => {
   } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users/seller");
+      const res = await fetch("http://localhost:5000/users/seller", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
@@ -20,6 +24,9 @@ const AllSeller = () => {
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/users/seller/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -35,6 +42,7 @@ const AllSeller = () => {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("watch-token")}`,
       },
       body: JSON.stringify({ status: true }),
     })
@@ -66,7 +74,7 @@ const AllSeller = () => {
           </tr>
         </thead>
         <tbody>
-          {sellers.map((user, index) => (
+          {sellers?.map((user, index) => (
             <tr key={user._id}>
               <th>{index + 1}</th>
               <th>

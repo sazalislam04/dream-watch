@@ -11,7 +11,11 @@ const AllBuyer = () => {
   } = useQuery({
     queryKey: ["buyers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users/buyer");
+      const res = await fetch("http://localhost:5000/users/buyer", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
@@ -19,6 +23,9 @@ const AllBuyer = () => {
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/users/buyer/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -34,6 +41,7 @@ const AllBuyer = () => {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("watch-token")}`,
       },
       body: JSON.stringify({ status: true }),
     })

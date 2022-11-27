@@ -24,7 +24,6 @@ const BookingModal = ({ bookingData, setBookingData }) => {
       meatingLocation,
       img: bookingData.img,
     };
-    console.log(bookingInfo);
 
     fetch("http://localhost:5000/bookings", {
       method: "POST",

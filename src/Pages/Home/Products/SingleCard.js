@@ -219,6 +219,7 @@ const SingleCard = ({ product, setBookingData }) => {
                       />
 
                       <span
+                        title="wishlist"
                         onClick={() => handleWishlist(product)}
                         className="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-primary peer-checked:text-white"
                       >
@@ -235,6 +236,7 @@ const SingleCard = ({ product, setBookingData }) => {
                       />
 
                       <span
+                        title="report to admin"
                         onClick={() => reportToAdmin(product)}
                         className="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-secondary peer-checked:text-white"
                       >
@@ -251,7 +253,7 @@ const SingleCard = ({ product, setBookingData }) => {
                 <div className="flow-root">
                   <div className="-m-0.5 flex flex-wrap">
                     <label htmlFor="size_xs" className="p-0.5">
-                      <span className="capitalize inline-flex gap-2 text-xl">
+                      <span className="capitalize inline-flex items-center gap-2 text-xl">
                         {seller_name}
                         {status ? (
                           <svg
@@ -260,7 +262,7 @@ const SingleCard = ({ product, setBookingData }) => {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-6 h-6 text-primary"
+                            className="w-5 h-5 text-blue-500"
                           >
                             <path
                               strokeLinecap="round"

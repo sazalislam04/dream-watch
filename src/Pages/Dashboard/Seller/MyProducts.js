@@ -32,6 +32,9 @@ const MyProducts = () => {
   const handleDeleteProduct = (id) => {
     fetch(`http://localhost:5000/products/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -52,9 +55,8 @@ const MyProducts = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.matchedCount) {
+        if (data) {
           toast.success("Product Advertise Successed");
-          console.log(data);
         }
       });
   };

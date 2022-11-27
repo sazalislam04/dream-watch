@@ -8,7 +8,7 @@ const ProductCategories = () => {
     queryKey: ["categories"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:5000/category");
+        const res = await fetch("http://localhost:5000/category", {});
         const data = await res.json();
         return data;
       } catch (error) {

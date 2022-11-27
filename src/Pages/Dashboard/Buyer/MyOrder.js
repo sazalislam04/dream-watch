@@ -26,9 +26,11 @@ const MyOrder = () => {
   });
 
   const handleDeleteOrder = (id) => {
-    console.log(id);
     fetch(`http://localhost:5000/bookings/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

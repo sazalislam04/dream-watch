@@ -11,7 +11,11 @@ const AllUser = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("http://localhost:5000/users", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
@@ -20,6 +24,9 @@ const AllUser = () => {
   const handleMakeAdmin = (id) => {
     fetch(`http://localhost:5000/users/admin/${id}`, {
       method: "PUT",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { data } from "autoprefixer";
 import axios from "axios";
 import React from "react";
 import toast from "react-hot-toast";
@@ -12,21 +11,29 @@ const ReportedItem = () => {
   } = useQuery({
     queryKey: ["repored"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/reports");
+      const res = await fetch("http://localhost:5000/reports", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
   });
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/reports/${id}`).then((res) => {
-      if (res.data) {
-        if (data.acknowledged) {
+    axios
+      .delete(`http://localhost:5000/reports/${id}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+        },
+      })
+      .then((res) => {
+        if (res.data) {
           toast.success("Reporded Deleted Successed");
           refetch();
         }
-      }
-    });
+      });
   };
   if (isLoading) {
     return <Loading />;

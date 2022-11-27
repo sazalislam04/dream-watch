@@ -7,6 +7,7 @@ import Loading from "../../../Loading/Loading";
 
 const MyWishlist = () => {
   const { user } = useContext(AuthContext);
+  const url = `http://localhost:5000/wishlist?email=${user?.email}`;
   const {
     data: wishlists,
     refetch,
@@ -14,9 +15,11 @@ const MyWishlist = () => {
   } = useQuery({
     queryKey: ["wishlists", user?.email],
     queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:5000/wishlist?email=${user?.email}`
-      );
+      const res = await fetch(url, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
@@ -25,6 +28,9 @@ const MyWishlist = () => {
   const handleDeleteWishList = (id) => {
     fetch(`http://localhost:5000/wishlist/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
