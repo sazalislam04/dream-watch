@@ -2,12 +2,9 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { AuthContext } from "../../../context/AuthProvider";
-import useBuyer from "../../../hook/useBuyer";
 
 const SingleCard = ({ product, setBookingData }) => {
   const { user } = useContext(AuthContext);
-  const [isBuyer] = useBuyer(user?.email);
-
   const {
     img,
     location,

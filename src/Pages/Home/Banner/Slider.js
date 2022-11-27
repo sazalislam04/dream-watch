@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Slider.css";
 const Slider = ({ item }) => {
   const { id, img, prev, next } = item;
@@ -19,12 +20,14 @@ const Slider = ({ item }) => {
           <button className="btn btn-primary btn-active mr-3 ">
             discover more
           </button>
-          <button
-            className="btn mt-5 sm:mt-0 btn-outline
+          <Link to="/login">
+            <button
+              className="btn mt-5 sm:mt-0 btn-outline
            text-white"
-          >
-            latest Watches
-          </button>
+            >
+              latest Watches
+            </button>
+          </Link>
         </div>
       </div>
       <div className="absolute flex justify-between transform -translate-y-1/2  right-8 lg:right-16 gap-6 bottom-0 lg:bottom-10">

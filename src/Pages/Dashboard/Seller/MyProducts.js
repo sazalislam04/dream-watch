@@ -54,6 +54,7 @@ const MyProducts = () => {
       .then((data) => {
         if (data.matchedCount) {
           toast.success("Product Advertise Successed");
+          console.log(data);
         }
       });
   };
