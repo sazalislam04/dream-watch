@@ -31,12 +31,16 @@ const CategoryDetails = () => {
         </div>
       </div>
       <>
-        {result.map((product) => (
-          <SingleCard
-            key={product._id}
-            product={product}
-            setBookingData={setBookingData}
-          />
+        {result?.map((product) => (
+          <div key={product._id}>
+            {product?.available && (
+              <SingleCard
+                key={product._id}
+                product={product}
+                setBookingData={setBookingData}
+              />
+            )}
+          </div>
         ))}
       </>
 

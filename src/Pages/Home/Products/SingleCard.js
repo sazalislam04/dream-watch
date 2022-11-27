@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { AuthContext } from "../../../context/AuthProvider";
+import useSeller from "../../../hook/useSeller";
 
 const SingleCard = ({ product, setBookingData }) => {
   const { user } = useContext(AuthContext);
+  const [isSeller] = useSeller(user?.email);
   const {
     img,
     location,
@@ -288,13 +290,21 @@ const SingleCard = ({ product, setBookingData }) => {
               </fieldset>
 
               <div className="mt-6 flex">
-                <label
-                  onClick={() => setBookingData(product)}
-                  htmlFor="booking-modal"
-                  className="btn btn-primary"
-                >
-                  Book Now
-                </label>
+                {!isSeller ? (
+                  <>
+                    <label
+                      onClick={() => setBookingData(product)}
+                      htmlFor="booking-modal"
+                      className="btn btn-primary"
+                    >
+                      Book Now
+                    </label>
+                  </>
+                ) : (
+                  <button className="btn btn-primary" disabled>
+                    Not Available
+                  </button>
+                )}
               </div>
             </div>
           </div>

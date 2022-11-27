@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../api/auth";
 import login from "../../assets/img/login.png";
 import { AuthContext } from "../../context/AuthProvider";
+import ButtonLoading from "../../Loading/ButtonLoading";
 
 const Login = () => {
   const {
@@ -12,7 +13,7 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { userEmailLogin, loginWithGoogle } = useContext(AuthContext);
+  const { userEmailLogin, loginWithGoogle, loading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -45,7 +46,9 @@ const Login = () => {
         setAuthToken(user);
         navigate(from, { replace: true });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -97,7 +100,9 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">
+                  {loading ? <ButtonLoading /> : "Login"}
+                </button>
               </div>
             </form>
             <div className="divider">Login with social accounts</div>

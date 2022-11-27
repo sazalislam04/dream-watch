@@ -87,9 +87,10 @@ const CheckoutForm = ({ bookings }) => {
         phone: data.phone,
         area: data.area,
         postalCode: data.postalCode,
+        productId: bookings.productId,
       };
       fetch("http://localhost:5000/payment", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "content-type": "application/json",
           authorization: `Bearer ${localStorage.getItem("watch-token")}`,
@@ -99,21 +100,10 @@ const CheckoutForm = ({ bookings }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.acknowledged) {
-            Swal.fire("Congrats! Your Payment Successed");
+            Swal.fire(
+              `Congrats! Your Payment Successed ${success}, ${transactionId}`
+            );
           }
-        });
-
-      fetch("http://localhost:5000/payment", {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("watch-token")}`,
-        },
-        body: JSON.stringify({ paid: true }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
         });
     }
     setProcessing(false);
@@ -293,7 +283,7 @@ const CheckoutForm = ({ bookings }) => {
                 </div>
               </form>
               <p className="text-red-500">{error}</p>
-              {/* {success && (
+              {success && (
                 <div>
                   <p className="text-green-500">{success}</p>
                   <p>
@@ -301,7 +291,7 @@ const CheckoutForm = ({ bookings }) => {
                     <span className="font-bold">{transactionId}</span>
                   </p>
                 </div>
-              )} */}
+              )}
             </div>
           </div>
         </div>

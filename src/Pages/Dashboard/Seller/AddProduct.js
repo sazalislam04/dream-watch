@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
-
+import ButtonLoading from "../../../Loading/ButtonLoading";
 const AddProduct = () => {
   const navigate = useNavigate();
   const {
@@ -12,7 +12,7 @@ const AddProduct = () => {
     handleSubmit,
   } = useForm();
   const imgHostKey = process.env.REACT_APP_imgbb;
-  const { user } = useContext(AuthContext);
+  const { user, loading, setLoading } = useContext(AuthContext);
   const handleAddProduct = (data) => {
     const image = data.image[0];
     const formData = new FormData();
@@ -79,6 +79,9 @@ const AddProduct = () => {
               className="input input-bordered"
               {...register("name", { required: "Product Name is required" })}
             />
+            {errors.name && (
+              <p className="text-red-500 mt-1">{errors.name?.message}</p>
+            )}
           </div>
           <div className="form-control">
             <label className="label">
@@ -90,6 +93,9 @@ const AddProduct = () => {
               className="input input-bordered"
               {...register("price", { required: "Price is required" })}
             />
+            {errors.price && (
+              <p className="text-red-500 mt-1">{errors.price?.message}</p>
+            )}
           </div>
           <div className="form-control">
             <label className="label">
@@ -101,6 +107,11 @@ const AddProduct = () => {
               className="input input-bordered"
               {...register("original_price", { required: "Price is required" })}
             />
+            {errors.original_price && (
+              <p className="text-red-500 mt-1">
+                {errors.original_price?.message}
+              </p>
+            )}
           </div>
           <div className="form-control">
             <label className="label">
@@ -112,6 +123,9 @@ const AddProduct = () => {
               className="input input-bordered"
               {...register("years", { required: "Year is required" })}
             />
+            {errors.years && (
+              <p className="text-red-500 mt-1">{errors.years?.message}</p>
+            )}
           </div>
           <div className="form-control">
             <label className="label">
@@ -126,6 +140,9 @@ const AddProduct = () => {
                 required: "Seller Name is required",
               })}
             />
+            {errors.seller_name && (
+              <p className="text-red-500 mt-1">{errors.name?.message}</p>
+            )}
           </div>
           <div className="form-control">
             <label className="label">
@@ -137,6 +154,9 @@ const AddProduct = () => {
               className="input input-bordered"
               {...register("number", { required: "Phone Number is required" })}
             />
+            {errors.number && (
+              <p className="text-red-500 mt-1">{errors.name?.message}</p>
+            )}
           </div>
           <div className="form-control">
             <label className="label">
@@ -146,6 +166,9 @@ const AddProduct = () => {
               {...register("location", { required: "Location is required" })}
               className="select select-bordered w-full"
             >
+              {errors.location && (
+                <p className="text-red-500 mt-1">{errors.location?.message}</p>
+              )}
               <option>Dhaka</option>
               <option>Chittagong</option>
               <option>Sylhet</option>
@@ -165,6 +188,11 @@ const AddProduct = () => {
               <option>Minimal Watches</option>
               <option>Modern Watches</option>
             </select>
+            {errors.category_name && (
+              <p className="text-red-500 mt-1">
+                {errors.category_name?.message}
+              </p>
+            )}
           </div>
           <div className="form-control">
             <label className="label">
@@ -180,6 +208,9 @@ const AddProduct = () => {
               <option>Good</option>
               <option>Fair</option>
             </select>
+            {errors.condition && (
+              <p className="text-red-500 mt-1">{errors.condition?.message}</p>
+            )}
           </div>
           <div className="form-control">
             <label className="label">
@@ -192,6 +223,9 @@ const AddProduct = () => {
               className="textarea textarea-bordered"
               placeholder="Product description"
             ></textarea>
+            {errors.description && (
+              <p className="text-red-500 mt-1">{errors.description?.message}</p>
+            )}
           </div>
           <div className="form-control">
             <label className="label">
@@ -207,9 +241,14 @@ const AddProduct = () => {
               className="file-input file-input-bordered w-full"
               placeholder="Product image"
             />
+            {errors.image && (
+              <p className="text-red-500 mt-1">{errors.image?.message}</p>
+            )}
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Add Product</button>
+            <button className="btn btn-primary">
+              {loading ? <ButtonLoading /> : "Add Product"}
+            </button>
           </div>
         </form>
       </div>

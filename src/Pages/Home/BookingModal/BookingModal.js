@@ -23,6 +23,7 @@ const BookingModal = ({ bookingData, setBookingData }) => {
       phone,
       meatingLocation,
       img: bookingData.img,
+      productId: bookingData._id,
     };
 
     fetch("http://localhost:5000/bookings", {

@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../api/auth";
 import registerimg from "../../assets/img/register.png";
 import { AuthContext } from "../../context/AuthProvider";
+import ButtonLoading from "../../Loading/ButtonLoading";
 
 const Register = () => {
   const {
@@ -13,8 +14,13 @@ const Register = () => {
   } = useForm();
 
   const imgHostKey = process.env.REACT_APP_imgbb;
-  const { createUser, userProfileUpdate, loginWithGoogle } =
-    useContext(AuthContext);
+  const {
+    createUser,
+    userProfileUpdate,
+    loginWithGoogle,
+    loading,
+    setLoading,
+  } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -51,6 +57,7 @@ const Register = () => {
               })
               .catch((error) => {
                 console.log(error);
+                setLoading(false);
               });
           })
           .catch((error) => console.log(error));
@@ -160,7 +167,9 @@ const Register = () => {
                 </select>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
+                <button className="btn btn-primary">
+                  {loading ? <ButtonLoading /> : "Register"}
+                </button>
               </div>
             </form>
             <div className="divider">Login with social accounts</div>

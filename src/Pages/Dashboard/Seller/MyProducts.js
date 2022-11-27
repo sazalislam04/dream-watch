@@ -60,10 +60,25 @@ const MyProducts = () => {
       });
   };
 
+  const handleCanceld = (id) => {
+    fetch(`http://localhost:5000/advertise/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ isAdvertise: false }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          toast.success("Advertised Canceled");
+        }
+      });
+  };
+
   if (isLoading) {
     return <Loading />;
   }
-  console.log(products);
 
   return (
     <div className="p-8">
@@ -105,8 +120,11 @@ const MyProducts = () => {
                     <td>
                       {category?.price && !category.paid && (
                         <>
-                          <button className="btn btn-primary btn-xs">
-                            Available
+                          <button
+                            onClick={() => handleCanceld(category._id)}
+                            className="btn btn-outline btn-error btn-xs"
+                          >
+                            Remove Advertise
                           </button>
 
                           <button
