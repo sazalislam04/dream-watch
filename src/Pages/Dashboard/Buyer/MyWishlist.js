@@ -72,7 +72,7 @@ const MyWishlist = () => {
                     <td>
                       <button
                         onClick={() => handleDeleteWishList(wishlist._id)}
-                        className="btn btn-error btn-sm"
+                        className="btn btn-error btn-xs"
                       >
                         Delete
                       </button>
@@ -81,7 +81,7 @@ const MyWishlist = () => {
                       {wishlist?.product.resale_price &&
                         !wishlist.product.paid && (
                           <Link to={`/dashboard/payment/${wishlist._id}`}>
-                            <button className="btn btn-primary btn-sm">
+                            <button className="btn btn-primary btn-xs">
                               pay
                             </button>
                           </Link>

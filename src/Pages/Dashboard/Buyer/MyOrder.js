@@ -75,7 +75,7 @@ const MyOrder = () => {
                     <td>
                       <button
                         onClick={() => handleDeleteOrder(booking._id)}
-                        className="btn btn-error btn-sm"
+                        className="btn btn-error btn-xs"
                       >
                         Delete
                       </button>
@@ -83,7 +83,7 @@ const MyOrder = () => {
                     <td>
                       {booking?.price && !booking.paid && (
                         <Link to={`/dashboard/payment/${booking._id}`}>
-                          <button className="btn btn-primary btn-sm">
+                          <button className="btn btn-primary btn-xs">
                             pay
                           </button>
                         </Link>
