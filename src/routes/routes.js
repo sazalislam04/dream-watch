@@ -10,6 +10,7 @@ import ReportedItem from "../Pages/Dashboard/Admin/ReportedItem";
 import MyOrder from "../Pages/Dashboard/Buyer/MyOrder";
 import MyWishlist from "../Pages/Dashboard/Buyer/MyWishlist";
 import Dashboard from "../Pages/Dashboard/Dashboard";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 import AddProduct from "../Pages/Dashboard/Seller/AddProduct";
 import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
@@ -126,6 +127,16 @@ export const router = createBrowserRouter([
             <MyWishlist />
           </BuyerRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookings/${params.id}`),
       },
     ],
   },

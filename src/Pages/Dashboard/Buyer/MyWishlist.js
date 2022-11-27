@@ -74,7 +74,7 @@ const MyWishlist = () => {
                       />
                     </td>
                     <td>{wishlist.product.name}</td>
-                    <td>{wishlist.product.resale_price}$</td>
+                    <td>{wishlist.product.price}$</td>
                     <td>
                       <button
                         onClick={() => handleDeleteWishList(wishlist._id)}
@@ -84,14 +84,13 @@ const MyWishlist = () => {
                       </button>
                     </td>
                     <td>
-                      {wishlist?.product.resale_price &&
-                        !wishlist.product.paid && (
-                          <Link to={`/dashboard/payment/${wishlist._id}`}>
-                            <button className="btn btn-primary btn-xs">
-                              pay
-                            </button>
-                          </Link>
-                        )}
+                      {wishlist?.product.price && !wishlist.product.paid && (
+                        <Link>
+                          <button className="btn btn-primary btn-xs">
+                            pay
+                          </button>
+                        </Link>
+                      )}
                       {wishlist.product.price && wishlist.product.paid && (
                         <span className="text-green-500">Paid</span>
                       )}

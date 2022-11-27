@@ -11,7 +11,7 @@ const SingleCard = ({ product, setBookingData }) => {
     name,
     number,
     original_price,
-    resale_price,
+    price,
     seller_name,
     years,
     description,
@@ -175,7 +175,7 @@ const SingleCard = ({ product, setBookingData }) => {
               </div>
 
               <p className="text-2xl flex flex-col items-center font-semibold">
-                ${resale_price}
+                ${price}
                 <small className="line-through text-sm -mt-2 font-medium text-gray-800">
                   ${original_price}
                 </small>

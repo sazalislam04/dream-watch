@@ -31,7 +31,7 @@ const AddProduct = () => {
           name: data.name,
           number: data.number,
           original_price: data.original_price,
-          resale_price: data.resale_price,
+          price: data.price,
           seller_name: data.seller_name,
           years: data.years,
           description: data.description,
@@ -88,7 +88,7 @@ const AddProduct = () => {
               type="text"
               placeholder="Resale price"
               className="input input-bordered"
-              {...register("resale_price", { required: "Price is required" })}
+              {...register("price", { required: "Price is required" })}
             />
           </div>
           <div className="form-control">

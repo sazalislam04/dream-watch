@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 import Loading from "../../../Loading/Loading";
 
@@ -64,6 +63,7 @@ const MyProducts = () => {
   if (isLoading) {
     return <Loading />;
   }
+  console.log(products);
 
   return (
     <div className="p-8">
@@ -93,7 +93,7 @@ const MyProducts = () => {
                       />
                     </td>
                     <td>{category.name}</td>
-                    <td>{category.resale_price}$</td>
+                    <td>{category.price}$</td>
                     <td>
                       <button
                         onClick={() => handleDeleteProduct(category._id)}
@@ -103,24 +103,21 @@ const MyProducts = () => {
                       </button>
                     </td>
                     <td>
-                      {category?.resale_price && !category.paid && (
+                      {category?.price && !category.paid && (
                         <>
-                          <Link to="">
-                            <button className="btn btn-primary btn-xs">
-                              Available
-                            </button>
-                          </Link>
-                          <Link>
-                            <button
-                              onClick={() => handleAdvertise(category._id)}
-                              className="btn btn-secondary ml-3 btn-xs"
-                            >
-                              Advertise
-                            </button>
-                          </Link>
+                          <button className="btn btn-primary btn-xs">
+                            Available
+                          </button>
+
+                          <button
+                            onClick={() => handleAdvertise(category._id)}
+                            className="btn btn-secondary ml-3 btn-xs"
+                          >
+                            Advertise
+                          </button>
                         </>
                       )}
-                      {category.resale_price && category.paid && (
+                      {category.price && category.paid && (
                         <span className="text-green-500">Sold</span>
                       )}
                     </td>

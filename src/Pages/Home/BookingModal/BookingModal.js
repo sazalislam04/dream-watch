@@ -88,7 +88,7 @@ const BookingModal = ({ bookingData, setBookingData }) => {
               type="text"
               name="price"
               disabled
-              value={bookingData.resale_price}
+              value={bookingData.price}
               placeholder="Product price"
               className="input input-bordered w-full"
             />
