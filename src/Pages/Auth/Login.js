@@ -32,10 +32,20 @@ const Login = () => {
       });
   };
   const handleGoogleLogin = () => {
+    const buyerAccount = {
+      role: "Buyers",
+    };
     loginWithGoogle()
       .then((result) => {
         toast.success("Login Success");
-        setAuthToken(result.user);
+        const user = {
+          email: result.user.email,
+          name: result.user.displayName,
+          photo: result.user.photoURL,
+          role: buyerAccount.role,
+          status: false,
+        };
+        setAuthToken(user);
         navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));

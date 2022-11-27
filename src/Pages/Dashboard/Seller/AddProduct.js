@@ -39,6 +39,8 @@ const AddProduct = () => {
           email: user.email,
           userName: user.displayName,
           isAdvertise: false,
+          available: true,
+          condition: data.condition,
         };
         storeProductData(product);
       });
@@ -162,6 +164,21 @@ const AddProduct = () => {
               <option>Classic Watches</option>
               <option>Minimal Watches</option>
               <option>Modern Watches</option>
+            </select>
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Condition Type</span>
+            </label>
+            <select
+              {...register("condition", {
+                required: "condition is required",
+              })}
+              className="select select-bordered w-full"
+            >
+              <option>Excellent</option>
+              <option>Good</option>
+              <option>Fair</option>
             </select>
           </div>
           <div className="form-control">

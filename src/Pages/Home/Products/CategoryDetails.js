@@ -10,9 +10,9 @@ const CategoryDetails = () => {
     <>
       <div className="bg-base-200 py-6 mb-20">
         <div className="sm:flex items-center justify-between container">
-          <div>
-            <h2 className="text-4xl font-medium">{category.category_name}</h2>
-            <div className="text-sm breadcrumbs">
+          <div className="">
+            <h2 className="text-5xl font-medium">{category.category_name}</h2>
+            <div className="text-md breadcrumbs">
               <ul>
                 <li>
                   <Link to="/">Home</Link>
@@ -24,7 +24,7 @@ const CategoryDetails = () => {
             </div>
           </div>
           <img
-            className="h-52 md:h-72 mt-5 lg:mt-0"
+            className="h-64 max-auto md:w-96 object-cover md:h-72 mt-5 lg:mt-0"
             src={category.category_banner}
             alt=""
           />
