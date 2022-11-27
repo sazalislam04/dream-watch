@@ -95,7 +95,7 @@ const MyProducts = () => {
                     <td>
                       <button
                         onClick={() => handleDeleteProduct(category._id)}
-                        className="btn btn-error btn-sm"
+                        className="btn btn-error btn-xs"
                       >
                         Delete
                       </button>
@@ -104,14 +104,14 @@ const MyProducts = () => {
                       {category?.resale_price && !category.paid && (
                         <>
                           <Link to="">
-                            <button className="btn btn-primary btn-sm">
+                            <button className="btn btn-primary btn-xs">
                               Available
                             </button>
                           </Link>
                           <Link>
                             <button
                               onClick={() => handleAdvertise(category._id)}
-                              className="btn btn-secondary ml-3 btn-sm"
+                              className="btn btn-secondary ml-3 btn-xs"
                             >
                               Advertise
                             </button>
