@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import useSetTitle from "../../../hook/useSetTitle";
 import BookingModal from "../BookingModal/BookingModal";
 import SingleCard from "./SingleCard";
 const CategoryDetails = () => {
   const { category, result } = useLoaderData();
   const [bookingData, setBookingData] = useState(null);
-
+  useSetTitle("Products");
   return (
     <>
       <div className="bg-base-200 py-6 mb-20">

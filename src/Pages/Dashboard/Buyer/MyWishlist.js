@@ -7,7 +7,7 @@ import Loading from "../../../Loading/Loading";
 
 const MyWishlist = () => {
   const { user, logOut } = useContext(AuthContext);
-  const url = `http://localhost:5000/wishlist?email=${user?.email}`;
+  const url = `https://dream-watch-server.vercel.app/wishlist?email=${user?.email}`;
   const {
     data: wishlists,
     refetch,
@@ -29,7 +29,7 @@ const MyWishlist = () => {
   });
 
   const handleDeleteWishList = (id) => {
-    fetch(`http://localhost:5000/wishlist/${id}`, {
+    fetch(`https://dream-watch-server.vercel.app/wishlist/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("watch-token")}`,
@@ -38,7 +38,7 @@ const MyWishlist = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {
-          toast.success("Seller Deleted Successfully");
+          toast.success("Wishlist Deleted Successfully");
           refetch();
         }
       });

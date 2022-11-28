@@ -47,14 +47,17 @@ const AddProduct = () => {
   };
 
   const storeProductData = (product) => {
-    fetch(`http://localhost:5000/products?email=${user?.email}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("watch-token")}`,
-      },
-      body: JSON.stringify(product),
-    })
+    fetch(
+      `https://dream-watch-server.vercel.app/products?email=${user?.email}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+        },
+        body: JSON.stringify(product),
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return logOut();

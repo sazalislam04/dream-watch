@@ -23,7 +23,7 @@ const SingleCard = ({ product, setBookingData }) => {
   } = product;
 
   const reportToAdmin = (product) => {
-    fetch("http://localhost:5000/reports", {
+    fetch("https://dream-watch-server.vercel.app/reports", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -45,7 +45,7 @@ const SingleCard = ({ product, setBookingData }) => {
       product,
       userEmail: user.email,
     };
-    fetch(`http://localhost:5000/wishlist`, {
+    fetch(`https://dream-watch-server.vercel.app/wishlist`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -289,7 +289,7 @@ const SingleCard = ({ product, setBookingData }) => {
                 </div>
               </fieldset>
 
-              <div className="mt-6 flex">
+              <div className="mt-6 mb-8 lg:mb-0 flex">
                 {!isSeller ? (
                   <>
                     <label

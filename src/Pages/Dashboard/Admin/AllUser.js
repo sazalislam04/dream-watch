@@ -13,7 +13,7 @@ const AllUser = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users", {
+      const res = await fetch("https://dream-watch-server.vercel.app/users", {
         headers: {
           authorization: `Bearer ${localStorage.getItem("watch-token")}`,
         },
@@ -27,7 +27,7 @@ const AllUser = () => {
   });
 
   const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+    fetch(`https://dream-watch-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("watch-token")}`,
@@ -44,7 +44,7 @@ const AllUser = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://dream-watch-server.vercel.app/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

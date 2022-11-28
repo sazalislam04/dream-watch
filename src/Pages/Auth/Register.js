@@ -4,9 +4,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../api/auth";
 import registerimg from "../../assets/img/register.png";
 import { AuthContext } from "../../context/AuthProvider";
+import useSetTitle from "../../hook/useSetTitle";
 import ButtonLoading from "../../Loading/ButtonLoading";
 
 const Register = () => {
+  useSetTitle("Register");
   const {
     register,
     formState: { errors },

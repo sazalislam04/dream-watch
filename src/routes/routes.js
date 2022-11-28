@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(`https://dream-watch-server.vercel.app/category/${params.id}`),
       },
     ],
   },
@@ -141,7 +141,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings/${params.id}`, {
+          fetch(`https://dream-watch-server.vercel.app/bookings/${params.id}`, {
             headers: {
               authorization: `Bearer ${localStorage.getItem("watch-token")}`,
             },

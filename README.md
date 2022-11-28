@@ -17,8 +17,8 @@ also fetures a buyers route. buyers can booking by modal and booking successed m
 - login system integrate by firebase and jwt authentication.
 - pament system integrate by react-stripe buyers can pay the product and see confimard message.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Live Link
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Deploy on Firebase
+- Client Site Link: [Dream Watch](https://dream-watch-813a8.web.app/)
+- Server Site Link: [Dream Watch-Server](https://dream-watch-server.vercel.app/)

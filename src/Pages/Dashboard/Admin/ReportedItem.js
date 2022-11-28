@@ -13,7 +13,7 @@ const ReportedItem = () => {
   } = useQuery({
     queryKey: ["repored"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/reports", {
+      const res = await fetch("https://dream-watch-server.vercel.app/reports", {
         headers: {
           authorization: `Bearer ${localStorage.getItem("watch-token")}`,
         },
@@ -28,7 +28,7 @@ const ReportedItem = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/reports/${id}`, {
+      .delete(`https://dream-watch-server.vercel.app/reports/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("watch-token")}`,
         },

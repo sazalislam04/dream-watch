@@ -7,7 +7,9 @@ const Advertisement = () => {
   const { data: sellerAdvertise, isLoading } = useQuery({
     queryKey: ["sellerAdvertise"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/advertise");
+      const res = await fetch(
+        "https://dream-watch-server.vercel.app/advertise"
+      );
       const data = await res.json();
       return data;
     },

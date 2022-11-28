@@ -6,7 +6,7 @@ import Loading from "../../../Loading/Loading";
 
 const MyProducts = () => {
   const { user, logOut } = useContext(AuthContext);
-  const url = `http://localhost:5000/products?email=${user?.email}`;
+  const url = `https://dream-watch-server.vercel.app/products?email=${user?.email}`;
   const {
     data: products,
     isLoading,
@@ -32,7 +32,7 @@ const MyProducts = () => {
   });
 
   const handleDeleteProduct = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://dream-watch-server.vercel.app/products/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("watch-token")}`,
@@ -48,7 +48,7 @@ const MyProducts = () => {
   };
 
   const handleAdvertise = (id) => {
-    fetch(`http://localhost:5000/advertise/${id}`, {
+    fetch(`https://dream-watch-server.vercel.app/advertise/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -64,7 +64,7 @@ const MyProducts = () => {
   };
 
   const handleCanceld = (id) => {
-    fetch(`http://localhost:5000/advertise/${id}`, {
+    fetch(`https://dream-watch-server.vercel.app/advertise/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

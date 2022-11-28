@@ -24,7 +24,7 @@ const CheckoutForm = ({ bookings }) => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://dream-watch-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -89,7 +89,7 @@ const CheckoutForm = ({ bookings }) => {
         postalCode: data.postalCode,
         productId: bookings.productId,
       };
-      fetch("http://localhost:5000/payment", {
+      fetch("https://dream-watch-server.vercel.app/payment", {
         method: "PUT",
         headers: {
           "content-type": "application/json",

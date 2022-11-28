@@ -7,7 +7,7 @@ import Loading from "../../../Loading/Loading";
 
 const MyOrder = () => {
   const { user, logOut } = useContext(AuthContext);
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://dream-watch-server.vercel.app/bookings?email=${user?.email}`;
   const {
     data: bookings,
     isLoading,
@@ -29,7 +29,7 @@ const MyOrder = () => {
   });
 
   const handleDeleteOrder = (id) => {
-    fetch(`http://localhost:5000/bookings/${id}`, {
+    fetch(`https://dream-watch-server.vercel.app/bookings/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("watch-token")}`,
@@ -49,7 +49,7 @@ const MyOrder = () => {
   }
 
   return (
-    <div className="p-8">
+    <div className="">
       <div className="overflow-x-auto">
         {bookings.length ? (
           <>

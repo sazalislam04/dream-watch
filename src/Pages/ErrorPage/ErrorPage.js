@@ -2,9 +2,10 @@ import Lottie from "lottie-react";
 import React from "react";
 import { Link, useRouteError } from "react-router-dom";
 import animation from "../../assets/animationFile/lottie.json";
+import useSetTitle from "../../hook/useSetTitle";
 const ErrorPage = () => {
   const error = useRouteError();
-
+  useSetTitle("Error Page");
   return (
     <section className="">
       <div className="container text-center sm:max-w-md">

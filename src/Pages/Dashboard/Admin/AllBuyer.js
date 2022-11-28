@@ -13,11 +13,14 @@ const AllBuyer = () => {
   } = useQuery({
     queryKey: ["buyers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users/buyer", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("watch-token")}`,
-        },
-      });
+      const res = await fetch(
+        "https://dream-watch-server.vercel.app/users/buyer",
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("watch-token")}`,
+          },
+        }
+      );
       if (res.status === 403 || res.status === 401) {
         return logOut();
       }
@@ -26,7 +29,7 @@ const AllBuyer = () => {
     },
   });
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/buyer/${id}`, {
+    fetch(`https://dream-watch-server.vercel.app/users/buyer/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("watch-token")}`,
@@ -42,7 +45,7 @@ const AllBuyer = () => {
   };
 
   const handleVerify = (email) => {
-    fetch(`http://localhost:5000/verify-status/${email}`, {
+    fetch(`https://dream-watch-server.vercel.app/verify-status/${email}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

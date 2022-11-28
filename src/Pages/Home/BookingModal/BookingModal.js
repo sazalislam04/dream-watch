@@ -28,7 +28,7 @@ const BookingModal = ({ bookingData, setBookingData }) => {
       productId: bookingData._id,
     };
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://dream-watch-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
