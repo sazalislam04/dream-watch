@@ -2,7 +2,11 @@ import React from "react";
 
 const NewsLetter = () => {
   return (
-    <section className="py-20 mt-20 bg-base-200">
+    <section
+      className="py-20 mt-20 bg-base-200"
+      data-aos="fade-up"
+      data-aos-anchor-placement="top-bottom"
+    >
       <div className="container px-4 py-16 mx-auto lg:flex lg:items-center lg:justify-between">
         <h2 className="text-3xl font-medium capitalize tracking-tight text-gray-800 xl:text-4xl">
           Join us and get the update from anywhere

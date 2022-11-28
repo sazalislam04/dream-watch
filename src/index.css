@@ -4,6 +4,20 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+::-webkit-scrollbar-thumb {
+  background: #bebebe;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #570df8;
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }

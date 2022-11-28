@@ -28,6 +28,10 @@ const CategoryDetails = () => {
             className="h-64 max-auto md:w-96 object-cover md:h-72 mt-5 lg:mt-0"
             src={category.category_banner}
             alt=""
+            data-aos="fade-left"
+            data-aos-anchor="#example-anchor"
+            data-aos-offset="500"
+            data-aos-duration="500"
           />
         </div>
       </div>

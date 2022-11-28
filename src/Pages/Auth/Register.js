@@ -86,10 +86,19 @@ const Register = () => {
   return (
     <div className="py-10">
       <div className="hero-content flex-col lg:gap-20 container lg:flex-row">
-        <div className="">
+        <div
+          className=""
+          data-aos="fade-right"
+          data-aos-anchor="#example-anchor"
+          data-aos-offset="500"
+          data-aos-duration="500"
+        >
           <img src={registerimg} alt="" />
         </div>
-        <div className="card flex-shrink-0 w-full lg:max-w-md shadow-2xl bg-base-100">
+        <div
+          className="card flex-shrink-0 w-full lg:max-w-md shadow-2xl bg-base-100"
+          data-aos="zoom-in"
+        >
           <div className="card-body">
             <form onSubmit={handleSubmit(handleRegister)}>
               <div className="form-control">

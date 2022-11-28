@@ -6,7 +6,12 @@ const NewLook = () => {
       <div className="container px-6 py-16 mx-auto">
         <div className="items-center lg:flex">
           <div className="w-full lg:w-1/2">
-            <div className="lg:max-w-lg lg:text-left text-center">
+            <div
+              className="lg:max-w-lg lg:text-left text-center"
+              data-aos="fade-right"
+              data-aos-offset="300"
+              data-aos-easing="ease-in-sine"
+            >
               <h2 className="text-3xl font-medium text-gray-700 lg:text-5xl">
                 A New Look
               </h2>
@@ -21,7 +26,10 @@ const NewLook = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
+          <div
+            className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2"
+            data-aos="zoom-in"
+          >
             <img
               className="w-full h-full rounded lg:max-w-2xl"
               src={look}

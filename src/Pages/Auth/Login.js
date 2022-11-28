@@ -56,10 +56,19 @@ const Login = () => {
   return (
     <div className="py-10">
       <div className="hero-content flex-col lg:gap-20 container lg:flex-row">
-        <div className="">
+        <div
+          className=""
+          data-aos="fade-right"
+          data-aos-anchor="#example-anchor"
+          data-aos-offset="500"
+          data-aos-duration="500"
+        >
           <img src={login} alt="" />
         </div>
-        <div className="card flex-shrink-0 w-full lg:w-96 shadow-2xl bg-base-100">
+        <div
+          className="card flex-shrink-0 w-full lg:w-96 shadow-2xl bg-base-100"
+          data-aos="zoom-in"
+        >
           <div className="card-body">
             <form onSubmit={handleSubmit(handleLogin)}>
               <div className="form-control">

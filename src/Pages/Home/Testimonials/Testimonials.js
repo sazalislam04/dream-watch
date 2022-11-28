@@ -26,7 +26,10 @@ const CustomerReview = () => {
                 <span className="inline-block w-1 h-1 bg-primary rounded-full"></span>
               </div>
 
-              <div className="flex items-start max-w-6xl mx-auto mt-10">
+              <div
+                className="flex items-start max-w-6xl mx-auto mt-10"
+                data-aos="zoom-in"
+              >
                 <div>
                   <p className="flex items-center text-center text-gray-500 lg:mx-8">
                     Donec sollicitudin molestie malesuada. Pellentesque in ipsum
@@ -74,7 +77,10 @@ const CustomerReview = () => {
                 <span className="inline-block w-1 h-1 bg-primary rounded-full"></span>
               </div>
 
-              <div className="flex items-start max-w-6xl mx-auto mt-10">
+              <div
+                className="flex items-start max-w-6xl mx-auto mt-10"
+                data-aos="zoom-in"
+              >
                 <div>
                   <p className="flex items-center text-center text-gray-500 lg:mx-8">
                     Donec sollicitudin molestie malesuada. Pellentesque in ipsum

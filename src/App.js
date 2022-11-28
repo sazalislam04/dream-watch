@@ -1,12 +1,18 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { BallTriangle } from "react-loader-spinner";
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/routes";
 
 function App() {
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
 
   useEffect(() => {
     setLoading(true);
