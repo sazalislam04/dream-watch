@@ -22,3 +22,8 @@ also fetures a buyers route. buyers can booking by modal and booking successed m
 - Deploy on Firebase
 - Client Site Link: [Dream Watch](https://dream-watch-813a8.web.app/)
 - Server Site Link: [Dream Watch-Server](https://dream-watch-server.vercel.app/)
+
+## Admin
+
+- adminEmail: sazal@islam.com
+- adminPassword: 123456789
