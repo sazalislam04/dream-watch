@@ -3,6 +3,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import MainLayout from "../Layout/MainLayout";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
+import Blog from "../Pages/Blog/Blog";
 import AllBuyer from "../Pages/Dashboard/Admin/AllBuyer";
 import AllSeller from "../Pages/Dashboard/Admin/AllSeller";
 import AllUser from "../Pages/Dashboard/Admin/AllUser";
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
       {
         path: "/login",

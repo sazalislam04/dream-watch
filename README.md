@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# Dream Watch - Reseller Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a highly secure and user-friendly customer-oriented web application. For the payment integration. Admin Dashboard is the most lucrative part of Dream Watch. Admin can manage all users and sellers added his/her product also advertised and deleted own product.
+also fetures a buyers route. buyers can booking by modal and booking successed message then navigate my orders page. than users can see his/her products also manage products deleted and payment.. payment method is used by stripe.
 
-## Available Scripts
+## USED TECHNOLOGIES
 
-In the project directory, you can run:
+**Client:** React JS, Daisyui, TailwindCSS, React-Hook-Form, React-Router-Dom, React-Hot-Tost, Axios, React-Query, Firebase, Context Api, react-photo-view, react-scripts, lottie-react, Heroicons,
 
-### `npm start`
+**Server:** Node Js, Express Js, Mongodb, stripe
+
+## Project Features
+
+- Admin Dashboard. admin manages all users.
+- Sellers can added his/her products and deleted also advertise his products that shown on home page.
+- A buyers can booking a products by the modal when submit succuess then navigate to my orders page. my orders page r 2 options deleted and payment. if a buyer can than he can make a products wishlist and repoart to admin.
+- login system integrate by firebase and jwt authentication.
+- pament system integrate by react-stripe buyers can pay the product and see confimard message.
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

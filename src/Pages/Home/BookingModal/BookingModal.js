@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const BookingModal = ({ bookingData, setBookingData }) => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleBooking = (event) => {
     event.preventDefault();
@@ -39,6 +41,7 @@ const BookingModal = ({ bookingData, setBookingData }) => {
           toast.success("Product is Booked");
           form.reset();
           setBookingData(null);
+          navigate("/dashboard/myorders");
         } else {
           toast.error(data.message);
         }
