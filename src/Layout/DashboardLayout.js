@@ -59,9 +59,9 @@ const DashboardLayout = () => {
                 to="/"
                 className="text-primary font-semibold flex flex-col h-10 w-full text-center text-2xl rounded-lg"
               >
-                DreamWatch
+                DREAM WATCH
                 <small className="text-sm text-gray-600 font-normal">
-                  watch store
+                  Dashboard
                 </small>
               </Link>
 
