@@ -302,7 +302,7 @@ const SingleCard = ({ product, setBookingData }) => {
                   </>
                 ) : (
                   <button className="btn btn-primary" disabled>
-                    Not Available
+                    Not Available For Seller
                   </button>
                 )}
               </div>

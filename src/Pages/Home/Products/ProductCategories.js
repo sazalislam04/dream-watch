@@ -23,11 +23,17 @@ const ProductCategories = () => {
   return (
     <div className="my-20">
       <div className="container">
-        <div className="text-center">
-          <h5 className="text-primary">Dream Watches</h5>
-          <h2 className="text-gray-900 text-3xl capitalize font-medium">
-            product categories
-          </h2>
+        <span className="text-primary text-center text-xl flex justify-center">
+          Dream Watch
+        </span>
+        <h1 className="text-3xl font-medium text-center text-gray-800 capitalize xl:text-4xl lg:text-3xl ">
+          Watches Collection
+        </h1>
+
+        <div className="flex justify-center mx-auto mt-3">
+          <span className="inline-block w-40 h-1 bg-primary rounded-full"></span>
+          <span className="inline-block w-3 h-1 mx-1 bg-primary rounded-full"></span>
+          <span className="inline-block w-1 h-1 bg-primary rounded-full"></span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
           {categories?.map((category) => (

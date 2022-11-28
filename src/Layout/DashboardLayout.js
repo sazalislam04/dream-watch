@@ -53,14 +53,14 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side shadow">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <div className="flex w-60 h-screen flex-col justify-between border-r bg-white">
+          <div className="flex w-64 h-screen flex-col justify-between border-r bg-white">
             <div className="px-4 py-6">
               <Link
                 to="/"
                 className="text-primary font-semibold flex flex-col h-10 w-full text-center text-2xl rounded-lg"
               >
                 DreamWatch
-                <small className="text-left text-sm text-gray-600 font-normal px-6">
+                <small className="text-sm text-gray-600 font-normal">
                   watch store
                 </small>
               </Link>
@@ -72,7 +72,7 @@ const DashboardLayout = () => {
                 <div className="flex items-center rounded-lg bg-gray-100 px-4 py-2 text-gray-700">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 opacity-75"
+                    className="h-5 w-5 opacity-75 text-primary"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -102,7 +102,7 @@ const DashboardLayout = () => {
                       <summary className="flex cursor-pointer items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 opacity-75"
+                          className="h-5 w-5 opacity-75 text-primary"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -122,7 +122,7 @@ const DashboardLayout = () => {
                         <span className="ml-auto shrink-0 transition duration-300 group-open:-rotate-180">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
+                            className="h-5 w-5 text-primary"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                           >
@@ -146,7 +146,7 @@ const DashboardLayout = () => {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-6 h-6"
+                            className="w-6 h-6 text-primary"
                           >
                             <path
                               strokeLinecap="round"
@@ -171,7 +171,7 @@ const DashboardLayout = () => {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-6 h-6"
+                            className="w-6 h-6 text-primary"
                           >
                             <path
                               strokeLinecap="round"
@@ -194,7 +194,7 @@ const DashboardLayout = () => {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-6 h-6"
+                            className="w-6 h-6 text-primary"
                           >
                             <path
                               strokeLinecap="round"
@@ -219,7 +219,7 @@ const DashboardLayout = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-5 h-5"
+                        className="w-5 h-5 text-primary"
                       >
                         <path
                           strokeLinecap="round"
@@ -248,7 +248,7 @@ const DashboardLayout = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-5 h-5"
+                        className="w-5 h-5 text-primary"
                       >
                         <path
                           strokeLinecap="round"
@@ -271,7 +271,7 @@ const DashboardLayout = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-5 h-5"
+                        className="w-5 h-5 text-primary"
                       >
                         <path
                           strokeLinecap="round"
@@ -298,7 +298,7 @@ const DashboardLayout = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6"
+                        className="w-6 h-6 text-primary"
                       >
                         <path
                           strokeLinecap="round"
@@ -321,7 +321,7 @@ const DashboardLayout = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-5 h-5"
+                        className="w-5 h-5 text-primary"
                       >
                         <path
                           strokeLinecap="round"
@@ -348,7 +348,7 @@ const DashboardLayout = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-5 h-5"
+                  className="w-5 h-5 text-primary"
                 >
                   <path
                     strokeLinecap="round"
@@ -365,7 +365,7 @@ const DashboardLayout = () => {
               <div className="flex w-full items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 opacity-75"
+                  className="h-5 w-5 opacity-75 text-primary"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

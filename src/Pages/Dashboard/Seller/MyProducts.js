@@ -5,7 +5,7 @@ import { AuthContext } from "../../../context/AuthProvider";
 import Loading from "../../../Loading/Loading";
 
 const MyProducts = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const url = `http://localhost:5000/products?email=${user?.email}`;
   const {
     data: products,
@@ -20,6 +20,9 @@ const MyProducts = () => {
             authorization: `Bearer ${localStorage.getItem("watch-token")}`,
           },
         });
+        if (res.status === 403 || res.status === 401) {
+          return logOut();
+        }
         const data = await res.json();
         return data;
       } catch (error) {

@@ -17,17 +17,9 @@ const Advertisement = () => {
   }
 
   return (
-    <>
+    <div className="mt-14">
       {sellerAdvertise?.length && (
         <>
-          <div className="container">
-            <div className="text-center mt-16 mb-10">
-              <h5 className="text-primary">Dream Watches</h5>
-              <h2 className="text-gray-900 text-3xl capitalize font-medium">
-                Product Advertisement
-              </h2>
-            </div>
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 container gap-8">
             {sellerAdvertise?.map((advertise) => (
               <Advertise key={advertise._id} advertise={advertise} />
@@ -35,7 +27,7 @@ const Advertisement = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

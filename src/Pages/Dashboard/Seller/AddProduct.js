@@ -12,7 +12,7 @@ const AddProduct = () => {
     handleSubmit,
   } = useForm();
   const imgHostKey = process.env.REACT_APP_imgbb;
-  const { user, loading, setLoading } = useContext(AuthContext);
+  const { user, loading, logOut } = useContext(AuthContext);
   const handleAddProduct = (data) => {
     const image = data.image[0];
     const formData = new FormData();
@@ -51,10 +51,16 @@ const AddProduct = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("watch-token")}`,
       },
       body: JSON.stringify(product),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Product Added Success");

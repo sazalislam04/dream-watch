@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../context/AuthProvider";
 import Loading from "../../../Loading/Loading";
 const ReportedItem = () => {
+  const { logOut } = useContext(AuthContext);
   const {
     data: repored,
     refetch,
@@ -16,6 +18,9 @@ const ReportedItem = () => {
           authorization: `Bearer ${localStorage.getItem("watch-token")}`,
         },
       });
+      if (res.status === 403 || res.status === 401) {
+        return logOut();
+      }
       const data = await res.json();
       return data;
     },

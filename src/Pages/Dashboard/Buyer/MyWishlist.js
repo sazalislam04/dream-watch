@@ -6,7 +6,7 @@ import { AuthContext } from "../../../context/AuthProvider";
 import Loading from "../../../Loading/Loading";
 
 const MyWishlist = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const url = `http://localhost:5000/wishlist?email=${user?.email}`;
   const {
     data: wishlists,
@@ -20,6 +20,9 @@ const MyWishlist = () => {
           authorization: `Bearer ${localStorage.getItem("watch-token")}`,
         },
       });
+      if (res.status === 403 || res.status === 401) {
+        return logOut();
+      }
       const data = await res.json();
       return data;
     },
@@ -101,7 +104,7 @@ const MyWishlist = () => {
             </table>
           </>
         ) : (
-          <p className="text-center mt-20 text-2xl">No WishList Added</p>
+          <p className="text-center mt-10 text-2xl">No WishList Added</p>
         )}
       </div>
     </div>
