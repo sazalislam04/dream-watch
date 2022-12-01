@@ -1,4 +1,4 @@
-# Dream Watch - Reseller Website
+# Dream Watch - Resaler Website
 
 This is a highly secure and user-friendly customer-oriented web application. For the payment integration. Admin Dashboard is the most lucrative part of Dream Watch. Admin can manage all users and sellers added his/her product also advertised and deleted own product.
 also fetures a buyers route. buyers can booking by modal and booking successed message then navigate my orders page. than users can see his/her products also manage products deleted and payment.. payment method is used by stripe.

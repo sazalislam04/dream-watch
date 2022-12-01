@@ -12,7 +12,7 @@ const Footer = () => {
             <span className="text-primary text-3xl font-medium">Dream</span>
             <span className="text-3xl font-medium">Watch</span>
             <br />
-            Reseller Market Place
+            Resaler Market Place
           </p>
         </div>
         <div>
