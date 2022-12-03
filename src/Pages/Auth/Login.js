@@ -14,7 +14,12 @@ const Login = () => {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: "sazal@islam.com",
+      password: "123456789",
+    },
+  });
   const { userEmailLogin, loginWithGoogle, loading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
